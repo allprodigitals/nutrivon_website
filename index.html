@@ -1,0 +1,2061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nutrivon — AI Nutrition & Health Analyzer</title>
+<!-- ── SEO META TAGS ── -->
+<meta name="description" content="Analyze any food instantly. Get personalized nutrition insights based on your health conditions — in 25 languages. Free to try, no sign-up required."/>
+<meta name="keywords" content="nutrition analyzer, AI nutrition, food health checker, diabetes diet, health conditions food, bilingual nutrition app, nutrition guidance"/>
+<meta name="author" content="Nutrivon"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://nutrivon.app"/>
+
+<!-- ── OPEN GRAPH (Facebook, WhatsApp, LinkedIn) ── -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Nutrivon"/>
+<meta property="og:title" content="Nutrivon — AI-Powered Nutrition for Your Health Conditions"/>
+<meta property="og:description" content="Type a food name, upload a photo, or use live camera scan. Nutrivon gives you a full nutrition breakdown tailored to your specific health conditions — in 25 languages."/>
+<meta property="og:url" content="https://nutrivon.app"/>
+<meta property="og:image" content="https://nutrivon.app/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:locale" content="en_US"/>
+
+<!-- ── TWITTER CARD ── -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Nutrivon — AI-Powered Nutrition for Your Health Conditions"/>
+<meta name="twitter:description" content="Type a food name, upload a photo, or use live camera scan. Nutrivon gives you a full nutrition breakdown tailored to your specific health conditions — in 25 languages."/>
+<meta name="twitter:image" content="https://nutrivon.app/og-image.png"/>
+
+<!-- ── FAVICON ── -->
+<link rel="icon" type="image/png" href="nutrivon-logo.png"/>
+<link rel="apple-touch-icon" href="nutrivon-logo.png"/>
+
+<!-- ── THEME COLOR (mobile browser chrome) ── -->
+<meta name="theme-color" content="#1e4a34"/>
+<meta name="msapplication-TileColor" content="#1e4a34"/>
+
+<style>
+:root {
+  --g1: #1e4a34;
+  --g2: #479c25;
+  --g3: #71e93d;
+  --grad: linear-gradient(135deg, #1e4a34 0%, #479c25 100%);
+  --grad-text: linear-gradient(135deg, #1e4a34 0%, #479c25 100%);
+  --surface: rgba(30,74,52,0.06);
+  --surface2: rgba(30,74,52,0.10);
+  --border: rgba(0,0,0,0.07);
+  --border-g: rgba(71,156,37,0.2);
+  --bg: #ffffff;
+  --bg2: #f6fdf8;
+  --bg3: #eef8f2;
+  --text: #0d1f14;
+  --muted: rgba(13,31,20,0.55);
+  --dim: rgba(13,31,20,0.32);
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+  --radius: 20px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+/* BG animated orbs */
+.bg-orb-wrap{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;}
+.bg-orb{position:absolute;border-radius:50%;}
+.bg-orb-1{width:800px;height:800px;background:radial-gradient(circle,rgba(113,233,61,0.07) 0%,transparent 70%);top:-200px;left:50%;transform:translateX(-50%);animation:orbPulse 9s ease-in-out infinite;}
+.bg-orb-2{width:500px;height:500px;background:radial-gradient(circle,rgba(30,74,52,0.05) 0%,transparent 70%);bottom:5%;right:-100px;animation:orbPulse 12s ease-in-out infinite reverse;}
+.bg-orb-3{width:300px;height:300px;background:radial-gradient(circle,rgba(71,156,37,0.06) 0%,transparent 70%);top:40%;left:-80px;animation:orbPulse 7s ease-in-out infinite 2s;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;height:68px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.85);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--border);animation:fadeDown .6s ease both;}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none;}
+.nav-logo img{width:36px;height:36px;object-fit:contain;}
+.nav-logo-text{font-size:19px;font-weight:700;color:var(--text);letter-spacing:-.3px;}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:450;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{background:var(--grad);color:#fff!important;font-weight:600!important;padding:9px 22px;border-radius:100px;font-size:13px!important;transition:all .2s!important;box-shadow:0 4px 16px rgba(71,156,37,.25);}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(71,156,37,.35)!important;}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 72px;position:relative;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(113,233,61,.1);border:1px solid rgba(113,233,61,.3);color:var(--g1);font-size:11px;font-weight:600;padding:6px 16px;border-radius:100px;margin-bottom:32px;letter-spacing:.07em;text-transform:uppercase;animation:fadeUp .7s .1s ease both;}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:#71e93d;box-shadow:0 0 8px #71e93d;animation:blink 2s ease-in-out infinite;flex-shrink:0;}
+.hero-title{font-size:clamp(50px,8vw,88px);font-weight:800;line-height:1.02;letter-spacing:-.04em;margin-bottom:10px;animation:fadeUp .7s .2s ease both;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-title-sub{font-size:clamp(48px,7.5vw,82px);font-weight:800;line-height:1.04;letter-spacing:-.04em;margin-bottom:28px;-webkit-text-fill-color:var(--g1);color:var(--g1);display:block;animation:fadeUp .7s .25s ease both;}
+.hero-sub{font-size:clamp(15px,2vw,18.5px);color:var(--muted);line-height:1.72;max-width:500px;margin:0 auto 20px;font-weight:400;animation:fadeUp .7s .3s ease both;}
+.hero-fact-chips{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:36px;animation:fadeUp .7s .35s ease both;}
+.fact-chip{display:inline-flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border-g);border-radius:100px;padding:5px 13px;font-size:12px;font-weight:500;color:var(--g1);}
+.fact-chip span{color:var(--g2);font-weight:700;}
+.hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;animation:fadeUp .7s .4s ease both;margin-bottom:12px;}
+.hero-note{font-size:12.5px;color:var(--dim);animation:fadeUp .7s .45s ease both;margin-bottom:64px;}
+.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--grad);color:#fff;font-weight:600;font-size:15px;padding:14px 28px;border-radius:100px;text-decoration:none;transition:all .2s;box-shadow:0 6px 24px rgba(71,156,37,.3);font-family:var(--font);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(71,156,37,.4);}
+.btn-secondary{display:inline-flex;align-items:center;gap:9px;background:white;color:var(--text);font-weight:500;font-size:15px;padding:14px 28px;border-radius:100px;text-decoration:none;border:1.5px solid var(--border);transition:all .2s;font-family:var(--font);}
+.btn-secondary:hover{border-color:var(--border-g);background:var(--surface);transform:translateY(-2px);}
+
+/* Hero phone */
+.hero-visual{position:relative;animation:fadeUp .8s .5s ease both;}
+.hero-phone-wrap{position:relative;display:inline-block;}
+.hero-phone{width:268px;height:535px;background:#2a3d1c;border-radius:46px;border:10px solid #1c1c1e;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.12),0 0 0 1px rgba(0,0,0,.6),0 40px 100px rgba(0,0,0,.45),0 8px 32px rgba(71,156,37,.12);overflow:hidden;position:relative;}
+.phone-notch{width:90px;height:24px;background:#0d1f14;border-radius:0 0 14px 14px;margin:0 auto;}
+.phone-content{padding:8px 11px 12px;height:calc(100% - 24px);display:flex;flex-direction:column;gap:8px;}
+.phone-hdr{display:flex;align-items:center;justify-content:space-between;}
+.phone-greeting{font-size:9.5px;color:var(--muted);}
+.phone-name{font-size:15px;font-weight:700;color:var(--text);line-height:1.2;}
+.phone-avatar{width:29px;height:29px;border-radius:50%;background:var(--grad);font-size:12px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;}
+.phone-scan{background:linear-gradient(135deg,rgba(113,233,61,.1),rgba(71,156,37,.04));border:1.5px dashed rgba(71,156,37,.28);border-radius:13px;padding:12px;text-align:center;}
+.scan-icon{font-size:24px;margin-bottom:3px;display:block;}
+.scan-lbl{font-size:9.5px;color:var(--g1);font-weight:600;}
+.phone-result{background:white;border:1px solid var(--border);border-radius:13px;padding:10px;box-shadow:0 2px 10px rgba(13,31,20,.04);}
+.res-food{font-size:11.5px;font-weight:700;margin-bottom:5px;color:var(--text);}
+.res-badge{display:inline-block;font-size:8.5px;font-weight:700;padding:2px 8px;border-radius:100px;margin-bottom:7px;background:rgba(71,156,37,.1);color:var(--g1);border:1px solid rgba(71,156,37,.22);}
+.nut-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
+.nut-lbl{font-size:8.5px;color:var(--muted);}
+.nut-bar-w{flex:1;height:3px;background:rgba(0,0,0,.06);border-radius:2px;margin:0 6px;overflow:hidden;}
+.nut-bar{height:100%;border-radius:2px;}
+.nut-val{font-size:8.5px;color:var(--muted);min-width:24px;text-align:right;}
+.phone-chips{display:flex;gap:5px;flex-wrap:wrap;}
+.cond-chip{background:var(--surface);border:1px solid var(--border-g);border-radius:100px;padding:3px 8px;font-size:8.5px;color:var(--g1);font-weight:500;}
+.phone-ai{background:linear-gradient(135deg,rgba(30,74,52,.06),rgba(71,156,37,.04));border:1px solid var(--border-g);border-radius:11px;padding:9px 10px;flex:1;}
+.ai-lbl{font-size:8px;font-weight:700;color:var(--g1);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;}
+.ai-txt{font-size:9px;color:var(--muted);line-height:1.55;}
+.phone-actions{display:flex;gap:5px;}
+.phone-btn{flex:1;background:var(--grad);color:white;border:none;border-radius:8px;padding:7px 4px;font-size:8.5px;font-weight:600;cursor:pointer;font-family:var(--font);display:flex;align-items:center;justify-content:center;gap:3px;}
+.phone-btn-out{flex:1;background:white;color:var(--g1);border:1px solid var(--border-g);border-radius:8px;padding:7px 4px;font-size:8.5px;font-weight:600;cursor:pointer;font-family:var(--font);display:flex;align-items:center;justify-content:center;gap:3px;}
+.float-card{position:absolute;background:white;border:1px solid var(--border-g);border-radius:13px;padding:9px 13px;white-space:nowrap;box-shadow:0 8px 28px rgba(13,31,20,.09);}
+.float-card-1{right:-88px;top:90px;animation:floatY 4s ease-in-out infinite;}
+.float-card-2{left:-96px;bottom:130px;animation:floatY 4s 1.5s ease-in-out infinite;}
+.float-val{font-size:17px;font-weight:700;color:var(--g2);line-height:1;margin-bottom:2px;}
+.float-desc{color:var(--muted);font-size:9.5px;}
+
+/* ── CONDITIONS STRIP ── */
+.conditions-strip{padding:52px 40px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);text-align:center;}
+.conditions-headline{font-size:clamp(22px,3.5vw,34px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:8px;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.conditions-sub{font-size:14px;color:var(--muted);margin-bottom:36px;font-weight:400;line-height:1.6;max-width:640px;margin-left:auto;margin-right:auto;}
+.conditions-sub em{font-style:normal;color:var(--g2);font-weight:600;}
+.conditions-cats{display:flex;flex-direction:column;gap:28px;max-width:860px;margin:0 auto 32px;}
+.conditions-cat-row{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;}
+.conditions-cat-label{display:flex;align-items:center;justify-content:center;gap:7px;}
+.conditions-cat-icon{font-size:17px;}
+.conditions-cat-name{font-size:13px;font-weight:700;color:var(--g1);letter-spacing:-.01em;}
+.conditions-cat-zh{font-size:10px;color:var(--g2);font-weight:400;margin-left:3px;}
+.conditions-pills{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;}
+.cond-pill{display:inline-flex;flex-direction:column;align-items:center;background:white;border:1px solid var(--border-g);border-radius:10px;padding:5px 14px;transition:all .2s;cursor:default;}
+.cond-pill:hover{background:var(--surface);border-color:rgba(71,156,37,.35);transform:translateY(-2px);box-shadow:0 4px 12px rgba(71,156,37,.1);}
+.cond-pill-en{font-size:12px;font-weight:600;color:var(--g1);line-height:1.2;}
+.cond-pill-zh{font-size:9px;color:var(--g2);font-weight:400;line-height:1.3;}
+.conditions-divider{width:100%;height:1px;background:var(--border);max-width:860px;margin:0 auto;}
+.conditions-custom{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,rgba(113,233,61,.1),rgba(71,156,37,.06));border:1.5px solid rgba(113,233,61,.35);border-radius:12px;padding:12px 22px;font-size:13px;color:var(--g1);font-weight:500;}
+.conditions-custom strong{font-weight:700;color:var(--g1);}
+@media(max-width:700px){.conditions-strip{padding:40px 20px;}}
+
+/* ── SHARED SECTION STYLES ── */
+.container{max-width:1100px;margin:0 auto;padding:0 44px;}
+.section-eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--g2);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.section-eyebrow::before{content:'';width:22px;height:2px;background:var(--g2);display:block;}
+.section-title{font-size:clamp(32px,4.5vw,52px);font-weight:800;line-height:1.08;letter-spacing:-.035em;margin-bottom:16px;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.section-sub{font-size:16px;color:var(--muted);line-height:1.72;font-weight:400;max-width:480px;}
+
+/* ── HOW IT WORKS ── */
+.how-section{padding:112px 0;background:var(--bg2);}
+.how-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;}
+.steps-list{display:flex;flex-direction:column;margin-top:40px;}
+.step-item{display:flex;gap:18px;padding:20px 16px;border-radius:14px;cursor:pointer;transition:all .25s;border:1.5px solid transparent;margin-bottom:8px;}
+.step-item:last-child{margin-bottom:0;}
+.step-item.active{background:white;border-color:var(--border-g);box-shadow:0 4px 20px rgba(71,156,37,.1);}
+.step-num{width:38px;height:38px;border-radius:11px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--muted);flex-shrink:0;transition:all .3s;}
+.step-item.active .step-num{background:rgba(113,233,61,.14);border-color:rgba(113,233,61,.4);color:var(--g2);box-shadow:0 0 14px rgba(113,233,61,.22);}
+.step-text h3{font-size:15.5px;font-weight:700;margin-bottom:5px;letter-spacing:-.01em;color:var(--g1);}
+.step-text p{font-size:13.5px;color:var(--muted);line-height:1.65;}
+.how-phone-col{position:sticky;top:100px;display:flex;flex-direction:column;align-items:center;gap:16px;}.how-phone-shell{width:252px;height:504px;background:#2a3d1c;border-radius:44px;border:10px solid #1c1c1e;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.12),0 0 0 1px rgba(0,0,0,.6),0 32px 72px rgba(0,0,0,.45),0 8px 24px rgba(71,156,37,.1);overflow:hidden;position:relative;}.how-phone-notch{width:86px;height:22px;background:#0d0d0f;border-radius:0 0 13px 13px;margin:0 auto;position:relative;z-index:2;}.how-phone-screens{position:relative;height:calc(100% - 22px);}.how-screen{position:absolute;inset:0;opacity:0;transition:opacity .55s ease;pointer-events:none;}.how-screen.active{opacity:1;pointer-events:auto;}.how-step-dots{display:flex;gap:8px;align-items:center;}.how-dot{width:8px;height:8px;border-radius:50%;background:var(--border-g);transition:all .3s;cursor:pointer;}.how-dot.active{background:var(--g2);width:22px;border-radius:4px;box-shadow:0 0 8px rgba(71,156,37,.3);}.how-screen-label{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;}
+
+
+
+
+
+.spinner{width:13px;height:13px;border:2px solid rgba(71,156,37,.2);border-top-color:var(--g2);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0;}
+
+
+
+
+/* ── FEATURES ── */
+.features-section{padding:112px 0;}
+.features-hdr{text-align:center;margin-bottom:60px;}
+.features-hdr .section-eyebrow{justify-content:center;}
+.features-hdr .section-eyebrow::before{display:none;}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--border);border-radius:22px;overflow:hidden;}
+.feat-card{background:white;padding:34px 30px;transition:background .25s;}
+.feat-card:hover{background:var(--bg2);}
+.feat-icon{width:44px;height:44px;border-radius:12px;background:rgba(113,233,61,.1);border:1px solid rgba(113,233,61,.25);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:20px;}
+.feat-title{font-size:16.5px;font-weight:700;letter-spacing:-.01em;margin-bottom:9px;color:var(--g1);}
+.feat-desc{font-size:13.5px;color:var(--muted);line-height:1.7;}
+
+/* ── APP PREVIEW / DOWNLOAD ── */
+.preview-section{padding:112px 0;background:#1e4a34;position:relative;overflow:hidden;}
+.preview-section::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+.preview-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;position:relative;}
+.preview-text{color:white;}
+.preview-text .section-eyebrow{color:rgba(255,255,255,.55);}
+.preview-text .section-eyebrow::before{background:rgba(255,255,255,.4);}
+.preview-title{font-size:clamp(32px,4.5vw,50px);font-weight:800;letter-spacing:-.035em;line-height:1.08;margin-bottom:16px;color:white;}
+.preview-sub{font-size:15.5px;color:rgba(255,255,255,.68);line-height:1.72;margin-bottom:32px;}
+.preview-badges{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+.prev-badge{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.18);color:white;padding:12px 20px;border-radius:13px;text-decoration:none;transition:all .2s;max-width:210px;position:relative;}
+.prev-badge:hover{background:rgba(255,255,255,.18);transform:translateX(4px);}
+.prev-badge-icon{font-size:22px;}
+.prev-badge-line1{font-size:9.5px;opacity:.6;letter-spacing:.02em;}
+.prev-badge-line2{font-size:16px;font-weight:700;letter-spacing:-.02em;}
+.prev-soon{position:absolute;top:5px;right:7px;font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#71e93d;color:#0d1f14;padding:2px 5px;border-radius:4px;}
+.preview-note{font-size:12px;color:rgba(255,255,255,.45);}
+.preview-try{display:inline-flex;align-items:center;gap:8px;background:white;color:var(--g1);font-weight:700;font-size:14px;padding:13px 26px;border-radius:100px;text-decoration:none;transition:all .2s;margin-bottom:10px;}
+.preview-try:hover{background:var(--bg3);transform:translateY(-2px);}
+.preview-phone-side{display:flex;justify-content:center;}
+.prev-phone{width:230px;height:458px;background:#edfaf0;border-radius:42px;border:10px solid #d6b56c;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3),0 0 0 1px rgba(180,148,70,.3),0 36px 72px rgba(0,0,0,.3);overflow:hidden;}
+.pp-notch{width:80px;height:22px;background:#0d0d0f;border-radius:0 0 13px 13px;margin:0 auto;}
+.pp-body{padding:8px 10px 10px;display:flex;flex-direction:column;gap:7px;height:calc(100% - 22px);}
+.pp-hdr{display:flex;justify-content:space-between;align-items:center;}
+.pp-greeting{font-size:9px;color:var(--muted);}
+.pp-name{font-size:14px;font-weight:700;}
+.pp-av{width:26px;height:26px;border-radius:50%;background:var(--grad);font-size:11px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;}
+.pp-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:10px;}
+.pp-food{font-size:11px;font-weight:700;margin-bottom:5px;}
+.pp-bar-row{display:flex;align-items:center;gap:6px;margin-bottom:4px;}
+.pp-bar-lbl{font-size:8.5px;color:var(--muted);width:38px;}
+.pp-bar-w{flex:1;height:3px;background:rgba(0,0,0,.06);border-radius:2px;overflow:hidden;}
+.pp-bar{height:100%;border-radius:2px;}
+.pp-bar-val{font-size:8.5px;color:var(--muted);width:22px;text-align:right;}
+.pp-safe{background:rgba(71,156,37,.1);border:1px solid rgba(71,156,37,.22);border-radius:8px;padding:7px 9px;font-size:9.5px;color:var(--g1);font-weight:600;text-align:center;}
+.pp-insight{flex:1;background:var(--surface);border:1px solid var(--border-g);border-radius:10px;padding:8px 9px;}
+.pp-ai-lbl{font-size:7.5px;font-weight:700;color:var(--g1);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;}
+.pp-ai-txt{font-size:8.5px;color:var(--muted);line-height:1.5;}
+
+/* ── DEMO SECTION ── */
+.demo-section{padding:112px 0;}
+.demo-hdr{text-align:center;margin-bottom:52px;}
+.demo-hdr .section-eyebrow{justify-content:center;}
+.demo-hdr .section-eyebrow::before{display:none;}
+.demo-tabs{display:flex;align-items:center;justify-content:center;gap:4px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:4px;width:fit-content;margin:0 auto 36px;}
+.demo-tab{padding:9px 22px;border-radius:9px;font-size:13.5px;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;user-select:none;border:none;background:transparent;font-family:var(--font);}
+.demo-tab.active{background:white;color:var(--g1);font-weight:650;box-shadow:0 1px 4px rgba(0,0,0,.08);}
+.demo-panels{position:relative;}
+.demo-panel{display:none;}
+.demo-panel.active{display:block;}
+
+/* Browser frame */
+.demo-browser{background:var(--bg3);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 28px 72px rgba(13,31,20,.09);}
+.browser-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;gap:12px;}
+.b-dots{display:flex;gap:6px;}
+.b-dot{width:11px;height:11px;border-radius:50%;}
+.b-dot-r{background:#ff5f56;}
+.b-dot-y{background:#ffbd2e;}
+.b-dot-g{background:#27c93f;}
+.b-url{flex:1;background:white;border:1px solid var(--border);border-radius:7px;padding:5px 11px;font-size:11.5px;color:var(--muted);display:flex;align-items:center;gap:5px;}
+.b-lock{color:var(--g2);font-size:10px;}
+.demo-iframe-wrap{position:relative;height:600px;}
+.demo-iframe-wrap iframe{width:100%;height:100%;border:none;display:block;}
+.demo-loader{position:absolute;inset:0;background:var(--bg2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .5s;}
+.demo-loader.hidden{opacity:0;pointer-events:none;}
+.demo-loader-icon{font-size:30px;animation:orbPulse 2s infinite;}
+.demo-loader-txt{font-size:13px;color:var(--muted);}
+
+/* Video demo player */
+.video-demo{background:var(--bg3);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 28px 72px rgba(13,31,20,.09);}
+.video-top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;}
+.video-top-left{display:flex;align-items:center;gap:12px;}
+.video-title-bar{font-size:12.5px;font-weight:600;color:var(--text);}
+.video-subtitle{font-size:11px;color:var(--muted);}
+.video-stage{position:relative;background:#0d1f14;min-height:540px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.video-phone-frame{width:240px;position:relative;z-index:2;}
+.video-phone-outer{width:240px;height:480px;background:#edfaf0;border-radius:44px;border:10px solid #c8a96e;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.25),0 0 0 1px rgba(180,140,60,.4),0 32px 64px rgba(0,0,0,.6),0 0 40px rgba(200,169,110,.15);overflow:hidden;position:relative;}
+.video-phone-notch{width:84px;height:22px;background:#0d0d0f;border-radius:0 0 13px 13px;margin:0 auto;}
+.video-screen{padding:8px 12px 12px;height:calc(100% - 22px);position:relative;}
+
+/* Slide screens */
+.slide{position:absolute;inset:0;padding:10px 14px 14px;opacity:0;transition:opacity .5s ease;pointer-events:none;}
+.slide.active{opacity:1;pointer-events:auto;}
+
+/* bg glow behind phone */
+.video-glow{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(113,233,61,.15) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+
+/* Step indicators */
+.video-steps{display:flex;align-items:flex-start;gap:0;padding:0 20px;background:#0d1f14;}
+.v-step{flex:1;padding:14px 8px;text-align:center;cursor:pointer;border-bottom:2px solid transparent;transition:all .25s;position:relative;}
+.v-step.active{border-bottom-color:#71e93d;}
+.v-step-icon{font-size:16px;margin-bottom:4px;display:block;}
+.v-step-lbl{font-size:9.5px;font-weight:500;color:rgba(255,255,255,.4);line-height:1.3;}
+.v-step.active .v-step-lbl{color:rgba(255,255,255,.85);}
+
+/* Progress bar */
+.video-progress{height:3px;background:rgba(255,255,255,.1);position:relative;}
+.video-progress-fill{height:100%;background:#71e93d;transition:width .3s ease;width:0%;}
+
+/* Video controls */
+.video-controls{background:#0d1f14;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid rgba(255,255,255,.06);}
+.vc-left{display:flex;align-items:center;gap:10px;}
+.vc-btn{width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;cursor:pointer;color:white;font-size:12px;transition:all .2s;}
+.vc-btn:hover{background:rgba(255,255,255,.15);}
+.vc-play{width:38px;height:38px;background:var(--g2);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:white;font-size:14px;transition:all .2s;}
+.vc-play:hover{background:var(--g1);}
+.vc-time{font-size:11px;color:rgba(255,255,255,.45);font-variant-numeric:tabular-nums;}
+.vc-step-counter{font-size:11px;color:rgba(255,255,255,.35);}
+
+/* Slide content styles */
+.s-hdr{font-size:11px;font-weight:700;color:var(--g1);margin-bottom:6px;letter-spacing:-.01em;}
+.s-search-bar{background:white;border:1.5px solid var(--border-g);border-radius:10px;padding:9px 12px;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:7px;margin-bottom:10px;}
+.s-search-bar span{color:var(--g2);font-size:13px;}
+.s-recent{display:flex;flex-direction:column;gap:5px;}
+.s-recent-item{background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:7px 10px;font-size:9.5px;color:var(--g1);display:flex;align-items:center;gap:6px;}
+.s-loading-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:80%;gap:12px;}
+.s-spinner-big{width:44px;height:44px;border:3px solid rgba(71,156,37,.2);border-top-color:var(--g2);border-radius:50%;animation:spin .8s linear infinite;}
+.s-load-txt{font-size:10.5px;color:var(--g1);font-weight:600;}
+.s-load-sub{font-size:9px;color:var(--muted);text-align:center;line-height:1.5;}
+.s-result-food{font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.s-result-badge{display:inline-block;font-size:8.5px;font-weight:700;padding:2px 9px;border-radius:100px;margin-bottom:8px;background:rgba(71,156,37,.1);color:var(--g1);border:1px solid rgba(71,156,37,.2);}
+.s-nut-section{background:white;border:1px solid var(--border);border-radius:10px;padding:8px;margin-bottom:7px;}
+.s-nut-row{display:flex;align-items:center;gap:5px;margin-bottom:4px;}
+.s-nut-lbl{font-size:8.5px;color:var(--muted);width:40px;}
+.s-nut-bar-w{flex:1;height:3px;background:rgba(0,0,0,.06);border-radius:2px;overflow:hidden;}
+.s-nut-bar{height:100%;border-radius:2px;}
+.s-nut-val{font-size:8.5px;color:var(--muted);width:24px;text-align:right;}
+.s-health-section{background:var(--surface);border:1px solid var(--border-g);border-radius:10px;padding:8px;margin-bottom:7px;}
+.s-health-title{font-size:8.5px;font-weight:700;color:var(--g1);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em;}
+.s-health-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;}
+.s-health-cond{font-size:8.5px;color:var(--g1);}
+.s-health-tag{font-size:7.5px;font-weight:700;padding:2px 7px;border-radius:100px;background:rgba(71,156,37,.15);color:var(--g1);}
+.s-health-tag.warn{background:rgba(255,180,0,.15);color:#7a5400;}
+.s-pdf-wrap{display:flex;flex-direction:column;gap:7px;margin-top:6px;}
+.s-pdf-card{background:white;border:1.5px solid var(--border-g);border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:9px;}
+.s-pdf-icon{font-size:20px;}
+.s-pdf-info{flex:1;}
+.s-pdf-title{font-size:10px;font-weight:700;color:var(--g1);margin-bottom:1px;}
+.s-pdf-sub{font-size:8.5px;color:var(--muted);}
+.s-pdf-btn{background:var(--grad);color:white;border:none;border-radius:7px;padding:6px 10px;font-size:9px;font-weight:600;cursor:pointer;font-family:var(--font);}
+.s-share-wrap{display:flex;flex-direction:column;gap:7px;margin-top:6px;}
+.s-share-card{background:white;border:1.5px solid var(--border-g);border-radius:10px;padding:10px 12px;}
+.s-share-title{font-size:10px;font-weight:700;color:var(--g1);margin-bottom:4px;}
+.s-share-link{background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:6px 9px;font-size:8.5px;color:var(--muted);display:flex;align-items:center;justify-content:space-between;gap:5px;margin-bottom:6px;}
+.s-share-copy{background:var(--g1);color:white;border:none;border-radius:5px;padding:3px 8px;font-size:8px;font-weight:600;cursor:pointer;font-family:var(--font);}
+.s-share-expiry{font-size:8px;color:var(--dim);}
+.s-share-icons{display:flex;gap:6px;margin-top:5px;}
+.s-share-icon{width:28px;height:28px;border-radius:8px;background:var(--bg2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;}
+
+/* ── PRICING ── */
+.pricing-section{padding:112px 0;background:var(--bg2);}
+.pricing-hdr{text-align:center;margin-bottom:56px;}
+.pricing-hdr .section-eyebrow{justify-content:center;}
+.pricing-hdr .section-eyebrow::before{display:none;}
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:720px;margin:0 auto;}
+.pricing-card{background:white;border:1.5px solid var(--border);border-radius:22px;padding:36px;transition:all .25s;position:relative;}
+.pricing-card.featured{border-color:var(--g2);box-shadow:0 16px 48px rgba(71,156,37,.15);}
+.pricing-card:hover{transform:translateY(-4px);box-shadow:0 20px 56px rgba(13,31,20,.1);}
+.pricing-card.featured:hover{box-shadow:0 20px 56px rgba(71,156,37,.2);}
+.pricing-tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--grad);color:white;font-size:11px;font-weight:700;padding:4px 16px;border-radius:100px;white-space:nowrap;letter-spacing:.04em;}
+.pricing-tier{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g2);margin-bottom:8px;}
+.pricing-price{font-size:48px;font-weight:800;letter-spacing:-.04em;color:var(--g1);line-height:1;margin-bottom:4px;}
+.pricing-price span{font-size:16px;font-weight:500;color:var(--muted);letter-spacing:0;}
+.pricing-cycle{font-size:13px;color:var(--muted);margin-bottom:24px;}
+.pricing-divider{height:1px;background:var(--border);margin-bottom:22px;}
+.pricing-features{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+.pf-item{display:flex;align-items:flex-start;gap:9px;font-size:13.5px;color:var(--muted);line-height:1.5;}
+.pf-check{color:var(--g2);font-size:14px;flex-shrink:0;margin-top:1px;font-weight:700;}
+.pf-x{color:var(--dim);font-size:14px;flex-shrink:0;margin-top:1px;}
+.pricing-cta{display:block;text-align:center;padding:13px;border-radius:12px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s;}
+.pricing-cta-free{background:var(--bg2);color:var(--g1);border:1.5px solid var(--border-g);}
+.pricing-cta-free:hover{background:var(--bg3);}
+.pricing-cta-premium{background:var(--grad);color:white;box-shadow:0 6px 20px rgba(71,156,37,.25);}
+.pricing-cta-premium:hover{box-shadow:0 8px 28px rgba(71,156,37,.35);transform:translateY(-1px);}
+.pricing-note{text-align:center;margin-top:20px;font-size:12.5px;color:var(--dim);}
+
+/* ── CTA ── */
+.cta-section{padding:112px 0;text-align:center;position:relative;overflow:hidden;}
+.cta-orb{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(113,233,61,.07) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.cta-title{font-size:clamp(38px,6vw,66px);font-weight:800;line-height:1.06;letter-spacing:-.04em;margin-bottom:18px;position:relative;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.cta-title em{font-style:normal;background:linear-gradient(135deg,#479c25 0%,#1e4a34 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.cta-sub{font-size:17px;color:var(--muted);margin-bottom:36px;font-weight:400;line-height:1.65;position:relative;}
+.cta-actions{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;position:relative;margin-bottom:16px;}
+.cta-note{font-size:12.5px;color:var(--dim);position:relative;}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:40px 48px 30px;background:white;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.footer-logo{display:flex;align-items:center;gap:9px;text-decoration:none;}
+.footer-logo img{width:28px;height:28px;object-fit:contain;}
+.footer-logo-text{font-size:17px;font-weight:700;color:var(--text);}
+.footer-links{display:flex;gap:26px;list-style:none;flex-wrap:wrap;}
+.footer-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--text);}
+.footer-copy{font-size:12px;color:var(--dim);}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes orbPulse{0%,100%{transform:translateX(-50%) scale(1);opacity:.7;}50%{transform:translateX(-50%) scale(1.07);opacity:1;}}
+@keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-11px);}}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.25;}}
+@keyframes scanLine{0%{top:20%;}50%{top:80%;}100%{top:20%;}}
+@keyframes slideIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-d1{transition-delay:.1s;}
+
+/* ── LANGUAGES SECTION ── */
+.lang-section{padding:112px 0;background:var(--bg);}
+.lang-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.lang-info{display:flex;flex-direction:column;gap:20px;}
+.lang-stats-row{display:flex;gap:20px;flex-wrap:wrap;}
+.lang-stat{display:flex;flex-direction:column;gap:3px;}
+.lang-stat-num{font-size:38px;font-weight:800;letter-spacing:-.04em;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+.lang-stat-lbl{font-size:12px;color:var(--muted);font-weight:500;}
+.lang-stat-div{width:1px;background:var(--border);align-self:stretch;margin:4px 0;}
+.lang-points{display:flex;flex-direction:column;gap:12px;}
+.lang-point{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:13px;transition:all .2s;}
+.lang-point:hover{border-color:var(--border-g);background:var(--bg3);}
+.lang-point-icon{font-size:20px;flex-shrink:0;margin-top:1px;}
+.lang-point-title{font-size:14px;font-weight:700;color:var(--g1);margin-bottom:3px;letter-spacing:-.01em;}
+.lang-point-desc{font-size:13px;color:var(--muted);line-height:1.6;}
+.lang-flag-strip{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+.lang-flag-pill{display:inline-flex;align-items:center;gap:5px;background:var(--bg2);border:1px solid var(--border);border-radius:100px;padding:4px 11px;font-size:11.5px;color:var(--g1);font-weight:500;transition:all .2s;}
+.lang-flag-pill:hover{border-color:var(--border-g);background:var(--surface);}
+.lang-more{font-size:12px;color:var(--muted);font-style:italic;align-self:center;}
+/* Phone col */
+.lang-phone-col{display:flex;justify-content:center;align-items:flex-start;}
+.lang-phone-wrap{position:relative;}
+.lang-phone{width:272px;height:544px;border-radius:46px;border:10px solid #1c1c1e;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.12),0 0 0 1px rgba(0,0,0,.55),0 40px 80px rgba(13,31,20,.14);overflow:hidden;background:#3db82e;}
+.lang-phone-notch{width:90px;height:23px;background:#0d0d0f;border-radius:0 0 14px 14px;margin:0 auto;}
+.lang-phone-body{height:calc(100% - 23px);overflow:hidden;display:flex;flex-direction:column;}
+/* Phone header */
+.lang-phone-hdr{background:linear-gradient(160deg,#2d8a1a 0%,#3db82e 40%,#5ed040 100%);padding:10px 12px 10px;display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0;}
+.lang-phone-logo{width:36px;height:36px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.2);margin-bottom:2px;overflow:hidden;}
+.lang-phone-name{font-size:13px;font-weight:700;color:white;letter-spacing:.3px;}
+.lang-phone-tagline{font-size:8px;color:rgba(255,255,255,.82);font-weight:500;}
+.lang-phone-select{font-size:9px;color:#e8d56a;font-weight:700;letter-spacing:.04em;margin-top:1px;}
+/* Search bar */
+.lang-phone-search{background:#f5fff5;margin:8px 10px 0;border-radius:9px;padding:6px 10px;display:flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.6);flex-shrink:0;}
+.lang-phone-search span{font-size:10px;color:#9ab49a;}
+.lang-phone-search div{font-size:8.5px;color:#9ab49a;}
+/* Grid */
+.lang-phone-grid{flex:1;overflow:hidden;padding:8px 8px 4px;background:#f5fff5;}
+.lang-phone-grid-inner{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;}
+.lang-phone-card{background:white;border-radius:9px;padding:5px 2px;text-align:center;border:1px solid rgba(200,230,200,.6);}
+.lang-phone-card.selected{background:#d6f2d8;border:1.5px solid #51ac2b;}
+.lang-phone-flag{font-size:15px;line-height:1.2;display:block;}
+.lang-phone-lbl{font-size:6px;font-weight:600;color:#1a4a28;line-height:1.2;margin-top:1px;}
+.lang-phone-sub{font-size:5px;color:#4a9060;line-height:1.1;}
+.lang-phone-footer{background:#f5fff5;padding:6px 10px;text-align:center;flex-shrink:0;border-top:1px solid rgba(200,230,200,.5);}
+.lang-phone-footer-note{font-size:7.5px;color:#4a9060;font-weight:500;}
+.lang-phone-footer-more{font-size:7px;color:#6b8f72;font-style:italic;}
+@media(max-width:900px){.lang-layout{grid-template-columns:1fr;gap:40px;}.lang-phone-col{display:none;}}
+
+/* ── HEALTH CONDITIONS SECTION ── */
+.hc-section{padding:112px 0;background:var(--bg2);}
+.hc-hdr{text-align:center;margin-bottom:56px;}
+.hc-hdr .section-eyebrow{justify-content:center;}
+.hc-hdr .section-eyebrow::before{display:none;}
+.hc-hdr em{font-style:italic;color:var(--g2);}
+.hc-layout{display:grid;grid-template-columns:1fr 1.3fr;gap:64px;align-items:start;}
+.hc-phone-col{display:flex;justify-content:center;position:sticky;top:88px;}
+.hc-phone-wrap{position:relative;}
+.hc-phone{width:240px;height:500px;border-radius:44px;border:10px solid #1c1c1e;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.12),0 0 0 1px rgba(0,0,0,.55),0 32px 72px rgba(13,31,20,.18);overflow:hidden;background:#dbf0e9;}
+.hc-info-col{display:flex;flex-direction:column;gap:16px;}
+.hc-cats{display:flex;flex-direction:column;gap:10px;}
+.hc-cat-card{background:white;border:1px solid var(--border);border-radius:14px;padding:14px 16px;display:flex;align-items:flex-start;gap:12px;transition:all .2s;}
+.hc-cat-card:hover{border-color:var(--border-g);box-shadow:0 4px 16px rgba(71,156,37,.1);transform:translateX(4px);}
+.hc-cat-icon{font-size:22px;flex-shrink:0;margin-top:1px;}
+.hc-cat-title{font-size:14px;font-weight:700;color:var(--g1);margin-bottom:4px;letter-spacing:-.01em;}
+.hc-cat-chips{font-size:12px;color:var(--muted);line-height:1.6;}
+.hc-custom-box{background:linear-gradient(135deg,rgba(113,233,61,.08),rgba(71,156,37,.04));border:1.5px solid rgba(113,233,61,.3);border-radius:14px;padding:18px;display:flex;align-items:flex-start;gap:12px;}
+.hc-custom-icon{font-size:22px;flex-shrink:0;}
+.hc-custom-title{font-size:14px;font-weight:700;color:var(--g1);margin-bottom:5px;}
+.hc-custom-desc{font-size:13px;color:var(--muted);line-height:1.65;}
+.hc-stats-row{display:flex;align-items:center;justify-content:space-around;background:white;border:1px solid var(--border);border-radius:14px;padding:18px 12px;}
+.hc-stat{display:flex;flex-direction:column;align-items:center;gap:3px;}
+.hc-stat-num{font-size:32px;font-weight:800;letter-spacing:-.04em;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+.hc-stat-lbl{font-size:11px;color:var(--muted);font-weight:500;text-align:center;}
+.hc-stat-div{width:1px;height:40px;background:var(--border);}
+@media(max-width:900px){.hc-layout{grid-template-columns:1fr;}.hc-phone-col{display:none;}}
+.reveal-d2{transition-delay:.2s;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .container{padding:0 20px;}
+  .how-layout,.preview-layout{grid-template-columns:1fr;gap:40px;}
+  .how-phone-col{display:none;}
+  .preview-phone-side{display:none;}
+  .features-grid{grid-template-columns:1fr;}
+  .pricing-grid{grid-template-columns:1fr;max-width:400px;}
+  .float-card{display:none;}
+  footer{padding:32px 20px 24px;}
+  .hero-phone{width:230px;height:460px;}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-orb-wrap">
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-orb bg-orb-3"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="nutrivon-logo.png" alt="Nutrivon"/>
+    <span class="nav-logo-text">Nutrivon</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#languages">Languages</a></li>
+    <li><a href="#conditions">Conditions</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="#demo" class="nav-cta">Try Free</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><span class="hero-badge-dot"></span>AI-Powered Nutrition Intelligence</div>
+  <h1 class="hero-title">Eat smarter.</h1>
+  <span class="hero-title-sub">Live healthier.</span>
+  <p class="hero-sub">Type a food name, upload a photo, or use the live camera scan — Nutrivon's AI instantly analyzes nutrition and tells you whether it suits your specific health conditions, in your language.</p>
+  <div class="hero-fact-chips">
+    <div class="fact-chip"><span>3</span> free analyses per day</div>
+    <div class="fact-chip"><span>90</span> lifetime free analyses</div>
+    <div class="fact-chip">No sign-up required</div>
+    <div class="fact-chip"><span>25</span> languages supported</div>
+  </div>
+  <div class="hero-actions">
+    <a href="#demo" class="btn-primary">Try the App Free →</a>
+    <a href="#how" class="btn-secondary">See how it works</a>
+  </div>
+  <p class="hero-note">Free to use in browser · 25 languages · Mobile app coming soon</p>
+
+  <div class="hero-visual">
+    <div class="hero-phone-wrap">
+      <div class="hero-phone">
+        <div class="phone-notch"></div>
+        <!-- Camera Scan Screen — exact recreation of actual app Image 1 -->
+        <div style="height:calc(100% - 25px);display:flex;flex-direction:column;overflow:hidden;">
+
+          <!-- GREEN HEADER: ~34% of screen height -->
+          <!-- Gradient: dark top #2d3420 → medium #3a8a22 → lighter #4caf35 -->
+          <div style="background:linear-gradient(160deg,#2a3d1c 0%,#357a1a 30%,#4aaa28 70%,#55c030 100%);padding:8px 12px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;flex:0 0 34%;">
+            <!-- Sparkle decoration dots (like actual app) -->
+            <div style="position:relative;width:100%;display:flex;align-items:center;justify-content:center;gap:0;">
+              <!-- Left sparkle -->
+              <div style="position:absolute;left:16px;top:-4px;color:#f0d060;font-size:11px;opacity:0.8;">✦</div>
+              <div style="position:absolute;left:28px;top:10px;color:#f0d060;font-size:7px;opacity:0.6;">✦</div>
+              <!-- Logo: white apple shape with N -->
+              <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;">
+                <img src="nutrivon-logo.png" style="width:44px;height:44px;object-fit:contain;" alt="Nutrivon"/>
+              </div>
+              <!-- Right sparkle -->
+              <div style="position:absolute;right:28px;top:-4px;color:#f0d060;font-size:7px;opacity:0.6;">✦</div>
+              <div style="position:absolute;right:14px;top:10px;color:#f0d060;font-size:11px;opacity:0.8;">✦</div>
+            </div>
+            <!-- Nutrivon wordmark -->
+            <div style="font-size:13px;font-weight:700;color:white;letter-spacing:.5px;margin-top:2px;">Nutrivon</div>
+            <!-- Yellow headline — matching actual app -->
+            <div style="font-size:9px;font-weight:700;color:#e8d56a;text-align:center;letter-spacing:.02em;line-height:1.3;">AI-powered nutrition guidance</div>
+            <!-- Chinese subtitle — matching actual app -->
+            <div style="font-size:8px;color:#c8b855;text-align:center;">智能食物扫描与健康洞察</div>
+          </div>
+
+          <!-- CAMERA VIEWFINDER: ~50% of screen -->
+          <div style="background:#a8aaa6;flex:0 0 50%;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+            <!-- Subtle camera noise texture -->
+            <div style="position:absolute;inset:0;background:url('lamb-shank.jpg') 33% 53% / cover no-repeat;filter:brightness(.88);"></div>
+
+            <!-- Cyan corner brackets — exact match to actual app -->
+            <!-- Top-left -->
+            <div style="position:absolute;top:10px;left:10px;width:18px;height:18px;border-top:2.5px solid #00d8ec;border-left:2.5px solid #00d8ec;border-radius:2px 0 0 0;z-index:2;"></div>
+            <!-- Top-right -->
+            <div style="position:absolute;top:10px;right:10px;width:18px;height:18px;border-top:2.5px solid #00d8ec;border-right:2.5px solid #00d8ec;border-radius:0 2px 0 0;z-index:2;"></div>
+            <!-- Bottom-left -->
+            <div style="position:absolute;bottom:10px;left:10px;width:18px;height:18px;border-bottom:2.5px solid #00d8ec;border-left:2.5px solid #00d8ec;border-radius:0 0 0 2px;z-index:2;"></div>
+            <!-- Bottom-right -->
+            <div style="position:absolute;bottom:10px;right:10px;width:18px;height:18px;border-bottom:2.5px solid #00d8ec;border-right:2.5px solid #00d8ec;border-radius:0 0 2px 0;z-index:2;"></div>
+
+            <!-- Animated scan line -->
+            <div style="position:absolute;left:10px;right:10px;height:1.5px;background:linear-gradient(90deg,transparent,#00d8ec,transparent);z-index:2;animation:scanLine 2.5s ease-in-out infinite;"></div>
+
+            <!-- Food item (dark bowl like actual app) -->
+            
+
+            <!-- "Point camera at food" overlay label -->
+            <div style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.42);border-radius:100px;padding:4px 14px;white-space:nowrap;z-index:3;">
+              <div style="font-size:8.5px;color:white;font-weight:500;text-align:center;">Point camera at food</div>
+              <div style="font-size:7px;color:rgba(255,255,255,0.7);text-align:center;">将相机对准食物</div>
+            </div>
+          </div>
+
+          <!-- BOTTOM GREEN BAR: camera capture button -->
+          <div style="background:linear-gradient(180deg,#3a8a25,#2d6b1e);flex:1;display:flex;align-items:center;justify-content:center;">
+            <!-- Camera button: white ring with camera icon inside, matching actual app -->
+            <div style="width:38px;height:38px;border-radius:50%;border:2.5px solid rgba(255,255,255,0.85);background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;">
+              <div style="width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.6);display:flex;align-items:center;justify-content:center;">
+                <span style="font-size:12px;">📷</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="float-card float-card-1"><div class="float-val">📷</div><div class="float-desc">Scan any food</div></div>
+      <div class="float-card float-card-2"><div class="float-val">25</div><div class="float-desc">Languages</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONDITIONS STRIP -->
+<div class="conditions-strip">
+  <h2 class="conditions-headline">23 conditions. 5 categories. Yours to personalize.</h2>
+  <p class="conditions-sub">Nutrivon covers you with <em>23 preset health conditions</em> organized across <em>5 wellness categories</em> — from heart health and digestion to bone and joint care. Have a condition that isn't listed? Simply type in your own and add as many as you need.</p>
+
+  <div class="conditions-cats">
+
+    <!-- Category 1: Heart & Blood Health -->
+    <div class="conditions-cat-row">
+      <div class="conditions-cat-label">
+        <span class="conditions-cat-icon">🫀</span>
+        <span class="conditions-cat-name">Heart &amp; Blood Health</span>
+        <span class="conditions-cat-zh">心脏与血液健康</span>
+      </div>
+      <div class="conditions-pills">
+        <div class="cond-pill"><span class="cond-pill-en">Diabetes</span><span class="cond-pill-zh">糖尿病</span></div>
+        <div class="cond-pill"><span class="cond-pill-en">High Blood Pressure</span><span class="cond-pill-zh">高血压</span></div>
+        <div class="cond-pill"><span class="cond-pill-en">High Cholesterol</span><span class="cond-pill-zh">高胆固醇</span></div>
+        <div class="cond-pill"><span class="cond-pill-en">Heart Disease</span><span class="cond-pill-zh">心脏病</span></div>
+        <div class="cond-pill"><span class="cond-pill-en">Stroke Risk</span><span class="cond-pill-zh">中风风险</span></div>
+      </div>
+    </div>
+
+    <div class="conditions-divider"></div>
+
+    <!-- Category 2: Weight & Body Goals -->
+    <div class="conditions-cat-row">
+      <div class="conditions-cat-label">
+        <span class="conditions-cat-icon">⚖️</span>
+        <span class="conditions-cat-name">Weight &amp; Body Goals</span>
+        <span class="conditions-cat-zh">体重与身体目标</span>
+      </div>
+      <div class="conditions-pills">
+        <div class="cond-pill"><span class="cond-pill-en">Weight Loss</span><span class="cond-pill-zh">减肥</span></div>
+        <div class="cond-pill"><span class="cond-pill-en">Weight Gain</span><span class="cond-pill-zh">增重</span></div>
+        <div class="cond-pill"><span class="cond-pill-en">Obesity</span><span class="cond-pill-zh">肥胖症</span></div>
+        <div class="cond-pill"><span class="cond-pill-en">Underweight</span><span class="cond-pill-zh">体重过轻</span></div>
+      </div>
+    </div>
+
+    <div class="conditions-divider"></div>
+
+    <!-- Category 3: Digestion & Gut Health -->
+    <div class="conditions-cat-row">
+      <div class="conditions-cat-label">
+        <span class="conditions-cat-icon">🍽️</span>
+        <span class="conditions-cat-name">Digestion &amp; Gut Health</span>
+        <span class="conditions-cat-zh">消化与肠道健康</span>
+      </div>
+      <div class="conditions-pills">
+        <div class="cond-pill"><span class="cond-pill-en">Acid Reflux (GERD)</span><span class="cond-pill-zh">胃酸倒流</span></div>
+        <div class="cond-pill"><span class="cond-pill-en">Gastritis</span><span class="cond-pill-zh">胃炎</span></div>
+        <div class="cond-pill"><span class="cond-pill-en">IBS</span><span class="cond-pill-zh">肠易激综合症</span></div>
+        <div class="cond-pill"><span class="cond-pill-en">Lactose Intolerance</span><span class="cond-pill-zh">乳糖不耐症</span></div>
+        <div class="cond-pill"><span class="cond-pill-en">Celiac Disease</span><span class="cond-pill-zh">乳糜泻</span></div>
+      </div>
+    </div>
+
+    <div class="conditions-divider"></div>
+
+    <!-- Category 4: General Health & Special Conditions -->
+    <div class="conditions-cat-row">
+      <div class="conditions-cat-label">
+        <span class="conditions-cat-icon">🧠</span>
+        <span class="conditions-cat-name">General Health &amp; Special Conditions</span>
+        <span class="conditions-cat-zh">一般健康与特殊状况</span>
+      </div>
+      <div class="conditions-pills">
+        <div class="cond-pill"><span class="cond-pill-en">Pregnancy</span><span class="cond-pill-zh">怀孕</span></div>
+        <div class="cond-pill"><span class="cond-pill-en">Anemia</span><span class="cond-pill-zh">贫血</span></div>
+        <div class="cond-pill"><span class="cond-pill-en">Kidney Disease</span><span class="cond-pill-zh">肾病</span></div>
+        <div class="cond-pill"><span class="cond-pill-en">Liver Disease</span><span class="cond-pill-zh">肝病</span></div>
+        <div class="cond-pill"><span class="cond-pill-en">Cough &amp; Flu</span><span class="cond-pill-zh">咳嗽和流感</span></div>
+      </div>
+    </div>
+
+    <div class="conditions-divider"></div>
+
+    <!-- Category 5: Bone, Joint & Inflammation -->
+    <div class="conditions-cat-row">
+      <div class="conditions-cat-label">
+        <span class="conditions-cat-icon">🦴</span>
+        <span class="conditions-cat-name">Bone, Joint &amp; Inflammation</span>
+        <span class="conditions-cat-zh">骨骼、关节与炎症</span>
+      </div>
+      <div class="conditions-pills">
+        <div class="cond-pill"><span class="cond-pill-en">Joint Pain</span><span class="cond-pill-zh">关节疼痛</span></div>
+        <div class="cond-pill"><span class="cond-pill-en">Arthritis</span><span class="cond-pill-zh">关节炎</span></div>
+        <div class="cond-pill"><span class="cond-pill-en">Gout</span><span class="cond-pill-zh">痛风</span></div>
+        <div class="cond-pill"><span class="cond-pill-en">Osteoporosis</span><span class="cond-pill-zh">骨质疏松</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Custom condition callout — matching app's "Your Own Condition" with pencil icon -->
+  <div class="conditions-custom">
+    <span>✏️</span>
+    <span>Not on the list? Use <strong>"Your Own Condition"</strong> to add any condition — as many as you need. 自定义状况</span>
+  </div>
+
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="container">
+    <div class="how-layout">
+
+      <!-- LEFT: Steps -->
+      <div>
+        <div class="section-eyebrow">How It Works</div>
+        <h2 class="section-title">Three steps to smarter eating</h2>
+        <div class="steps-list" id="howStepsList">
+
+          <div class="step-item active" data-step="1" onclick="howGoTo(1)">
+            <div class="step-num">01</div>
+            <div class="step-text">
+              <h3>Set your language</h3>
+              <p>Choose your preferred language from 25 supported options. Nutrivon displays every result bilingually — English plus your chosen language simultaneously. Set it once and it's remembered for every future session.</p>
+            </div>
+          </div>
+
+          <div class="step-item" data-step="2" onclick="howGoTo(2)">
+            <div class="step-num">02</div>
+            <div class="step-text">
+              <h3>Name it, photograph it, or scan it live — then set your health conditions</h3>
+              <p>Type any food name, upload a photo, or use the live camera scan. Then choose from 23 preset health conditions across 5 categories — or add your own.</p>
+            </div>
+          </div>
+
+          <div class="step-item" data-step="3" onclick="howGoTo(3)">
+            <div class="step-num">03</div>
+            <div class="step-text">
+              <h3>Get your personalized result</h3>
+              <p>See 6 nutrition metrics with daily reference percentages (calories, sugar, fat, salt, fibre, protein), a per-condition suitability rating, health warnings, bilingual AI summary, and practical tips. Download as PDF with food photo and QR code, or share via public link.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT: Sticky phone with 3 actual app screens -->
+      <div class="how-phone-col" id="howPhoneCol">
+        <div class="how-phone-shell">
+          <div class="how-phone-notch"></div>
+          <div class="how-phone-screens">
+
+            <!-- SCREEN 1: Camera Scan — actual app Image 1 -->
+            <div class="how-screen" id="how-screen-2">
+              <div style="height:100%;display:flex;flex-direction:column;overflow:hidden;">
+                <!-- Green header -->
+                <div style="background:linear-gradient(160deg,#2a3d1c 0%,#357a1a 30%,#4aaa28 70%,#55c030 100%);padding:10px 12px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;flex:0 0 32%;">
+                  <div style="position:relative;width:100%;display:flex;align-items:center;justify-content:center;">
+                    <div style="position:absolute;left:14px;top:-3px;color:#f0d060;font-size:12px;opacity:.8;">✦</div>
+                    <div style="position:absolute;left:26px;top:11px;color:#f0d060;font-size:7px;opacity:.6;">✦</div>
+                    <img src="nutrivon-logo.png" style="width:44px;height:44px;object-fit:contain;" alt="Nutrivon"/>
+                    <div style="position:absolute;right:26px;top:-3px;color:#f0d060;font-size:7px;opacity:.6;">✦</div>
+                    <div style="position:absolute;right:12px;top:11px;color:#f0d060;font-size:12px;opacity:.8;">✦</div>
+                  </div>
+                  <div style="font-size:12px;font-weight:700;color:white;letter-spacing:.5px;">Nutrivon</div>
+                  <div style="font-size:8.5px;font-weight:700;color:#e8d56a;text-align:center;">AI-powered nutrition guidance</div>
+                  <div style="font-size:7.5px;color:#c8b855;text-align:center;">智能食物扫描与健康洞察</div>
+                </div>
+                <!-- Camera viewfinder -->
+                <div style="background:#a8aaa6;flex:0 0 52%;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                  <div style="position:absolute;inset:0;background:url('lamb-shank.jpg') 33% 53% / cover no-repeat;filter:brightness(.88);"></div>
+                  <div style="position:absolute;top:10px;left:10px;width:18px;height:18px;border-top:2.5px solid #00d8ec;border-left:2.5px solid #00d8ec;border-radius:2px 0 0 0;z-index:2;"></div>
+                  <div style="position:absolute;top:10px;right:10px;width:18px;height:18px;border-top:2.5px solid #00d8ec;border-right:2.5px solid #00d8ec;border-radius:0 2px 0 0;z-index:2;"></div>
+                  <div style="position:absolute;bottom:10px;left:10px;width:18px;height:18px;border-bottom:2.5px solid #00d8ec;border-left:2.5px solid #00d8ec;border-radius:0 0 0 2px;z-index:2;"></div>
+                  <div style="position:absolute;bottom:10px;right:10px;width:18px;height:18px;border-bottom:2.5px solid #00d8ec;border-right:2.5px solid #00d8ec;border-radius:0 0 2px 0;z-index:2;"></div>
+                  <div style="position:absolute;left:10px;right:10px;height:1.5px;background:linear-gradient(90deg,transparent,#00d8ec,transparent);z-index:2;animation:scanLine 2.5s ease-in-out infinite;"></div>
+                  
+                  <div style="position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.42);border-radius:100px;padding:4px 14px;white-space:nowrap;z-index:3;">
+                    <div style="font-size:8px;color:white;font-weight:500;text-align:center;">Point camera at food</div>
+                    <div style="font-size:7px;color:rgba(255,255,255,.7);text-align:center;">将相机对准食物</div>
+                  </div>
+                </div>
+                <!-- Camera button bar -->
+                <div style="background:linear-gradient(180deg,#3a8a25,#2d6b1e);flex:1;display:flex;align-items:center;justify-content:center;">
+                  <div style="width:38px;height:38px;border-radius:50%;border:2.5px solid rgba(255,255,255,.85);background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;">
+                    <div style="width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font-size:12px;">📷</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SCREEN 2: Language selection + conditions — actual app flow -->
+            <div class="how-screen active" id="how-screen-1">
+              <div style="background:linear-gradient(180deg,#3a9e28 0%,#4db835 40%,#dbf0e9 40%,#dbf0e9 100%);height:100%;overflow:hidden;display:flex;flex-direction:column;justify-content:center;">
+                <!-- Green header -->
+                <div style="padding:10px 12px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0;">
+                  <img src="nutrivon-logo.png" style="width:52px;height:52px;object-fit:contain;margin-bottom:2px;" alt="Nutrivon"/>
+                  <div style="font-size:7.5px;color:rgba(255,255,255,.8);">AI-powered nutrition guidance</div>
+                  <div style="font-size:7px;color:rgba(255,255,255,.65);">智能食物扫描与健康洞察</div>
+                  <div style="font-size:8px;color:#e8d56a;font-weight:600;margin-top:2px;">Select Your Language</div>
+                  <div style="font-size:7px;color:rgba(255,255,255,.6);">选择你的语言</div>
+                </div>
+                <!-- Language grid -->
+                <div style="flex:0 1 auto;padding:6px 8px;">
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;">
+                    <!-- Row 1 -->
+                    <div style="background:white;border-radius:7px;padding:4px 3px;text-align:center;">
+                      <div style="font-size:13px;">🇬🇧</div>
+                      <div style="font-size:7px;font-weight:600;color:#1a4a28;">English</div>
+                    </div>
+                    <div style="background:#d6f2d8;border:1.5px solid #51ac2b;border-radius:7px;padding:4px 3px;text-align:center;">
+                      <div style="font-size:13px;">🇨🇳</div>
+                      <div style="font-size:7px;font-weight:700;color:#1a4a28;">中文</div>
+                      <div style="font-size:5.5px;color:#4a9060;">Chinese</div>
+                    </div>
+                    <div style="background:white;border-radius:7px;padding:4px 3px;text-align:center;">
+                      <div style="font-size:13px;">🇮🇳</div>
+                      <div style="font-size:7px;font-weight:600;color:#1a4a28;">हिंदी</div>
+                    </div>
+                    <!-- Row 2 -->
+                    <div style="background:white;border-radius:7px;padding:4px 3px;text-align:center;">
+                      <div style="font-size:13px;">🇪🇸</div>
+                      <div style="font-size:7px;font-weight:600;color:#1a4a28;">Español</div>
+                    </div>
+                    <div style="background:white;border-radius:7px;padding:4px 3px;text-align:center;">
+                      <div style="font-size:13px;">🇫🇷</div>
+                      <div style="font-size:7px;font-weight:600;color:#1a4a28;">Français</div>
+                    </div>
+                    <div style="background:white;border-radius:7px;padding:4px 3px;text-align:center;">
+                      <div style="font-size:13px;">🇸🇦</div>
+                      <div style="font-size:7px;font-weight:600;color:#1a4a28;">العربية</div>
+                    </div>
+                    <!-- Row 3 -->
+                    <div style="background:white;border-radius:7px;padding:4px 3px;text-align:center;">
+                      <div style="font-size:13px;">🇵🇹</div>
+                      <div style="font-size:7px;font-weight:600;color:#1a4a28;">Português</div>
+                    </div>
+                    <div style="background:white;border-radius:7px;padding:4px 3px;text-align:center;">
+                      <div style="font-size:13px;">🇷🇺</div>
+                      <div style="font-size:7px;font-weight:600;color:#1a4a28;">Русский</div>
+                    </div>
+                    <div style="background:white;border-radius:7px;padding:4px 3px;text-align:center;">
+                      <div style="font-size:13px;">🇯🇵</div>
+                      <div style="font-size:7px;font-weight:600;color:#1a4a28;">日本語</div>
+                    </div>
+                    <!-- Row 4 -->
+                    <div style="background:white;border-radius:7px;padding:4px 3px;text-align:center;">
+                      <div style="font-size:13px;">🇩🇪</div>
+                      <div style="font-size:7px;font-weight:600;color:#1a4a28;">Deutsch</div>
+                    </div>
+                    <div style="background:white;border-radius:7px;padding:4px 3px;text-align:center;">
+                      <div style="font-size:13px;">🇲🇾</div>
+                      <div style="font-size:7px;font-weight:600;color:#1a4a28;">Melayu</div>
+                    </div>
+                    <div style="background:white;border-radius:7px;padding:4px 3px;text-align:center;">
+                      <div style="font-size:13px;">🇰🇷</div>
+                      <div style="font-size:7px;font-weight:600;color:#1a4a28;">한국어</div>
+                    </div>
+                  </div>
+                  <div style="text-align:center;margin-top:5px;font-size:7px;color:#4a9060;font-style:italic;">+13 more languages · 25 total</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SCREEN 3: Full result — 750kcal/8g sugar/45g fat/1200mg salt/7g fiber/60g protein -->
+            <div class="how-screen" id="how-screen-3">
+              <div style="background:#edfaf0;height:100%;overflow:hidden;display:flex;flex-direction:column;font-family:inherit;">
+                <!-- Food photo strip — top 28% -->
+                <div style="flex:0 0 28%;position:relative;overflow:hidden;">
+                  <img src="lamb-shank.jpg" style="width:100%;height:100%;object-fit:cover;object-position:33% 53%;" alt="Braised Lamb Shank"/>
+                </div>
+                <!-- Warning banner — matches actual app -->
+                <div style="background:#fef2f2;border-bottom:1px solid #fca5a5;padding:7px 10px;display:flex;gap:6px;align-items:flex-start;flex-shrink:0;">
+                  <span style="font-size:10px;color:#dc2626;flex-shrink:0;">⚠</span>
+                  <div>
+                    <div style="font-size:8px;font-weight:700;color:#dc2626;">Several considerations to be aware of</div>
+                    <div style="font-size:7px;color:#991b1b;">有几点需要留意</div>
+                    <div style="font-size:7px;color:#6b7280;margin-top:1px;">This food has multiple flags for your conditions.</div>
+                  </div>
+                </div>
+                <!-- Nutrition Information 营养信息 — 6 fields with daily % -->
+                <div style="background:white;padding:6px 9px;flex-shrink:0;border-bottom:1px solid #e8f5ee;">
+                  <div style="font-size:7px;font-weight:700;color:#1e4a34;text-align:center;margin-bottom:5px;">Nutrition Information | 营养信息</div>
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;">
+                    <div style="background:#f0fdf4;border-radius:6px;padding:4px 3px;text-align:center;">
+                      <div style="font-size:12px;font-weight:800;color:#1e4a34;line-height:1;">750</div>
+                      <div style="font-size:6px;color:#4a9060;font-weight:600;">kcal 卡路里</div>
+                      <div style="font-size:5.5px;color:#9ab49a;">38% daily</div>
+                    </div>
+                    <div style="background:#f0fdf4;border-radius:6px;padding:4px 3px;text-align:center;">
+                      <div style="font-size:12px;font-weight:800;color:#1e4a34;line-height:1;">8g</div>
+                      <div style="font-size:6px;color:#4a9060;font-weight:600;">Sugar 糖</div>
+                      <div style="font-size:5.5px;color:#9ab49a;">16% daily</div>
+                    </div>
+                    <div style="background:#f0fdf4;border-radius:6px;padding:4px 3px;text-align:center;">
+                      <div style="font-size:12px;font-weight:800;color:#1e4a34;line-height:1;">45g</div>
+                      <div style="font-size:6px;color:#4a9060;font-weight:600;">Fat 脂肪</div>
+                      <div style="font-size:5.5px;color:#9ab49a;">64% daily</div>
+                    </div>
+                    <div style="background:#f0fdf4;border-radius:6px;padding:4px 3px;text-align:center;">
+                      <div style="font-size:12px;font-weight:800;color:#1e4a34;line-height:1;">1200</div>
+                      <div style="font-size:6px;color:#4a9060;font-weight:600;">mg Salt 盐</div>
+                      <div style="font-size:5.5px;color:#9ab49a;">52% daily</div>
+                    </div>
+                    <div style="background:#f0fdf4;border-radius:6px;padding:4px 3px;text-align:center;">
+                      <div style="font-size:12px;font-weight:800;color:#1e4a34;line-height:1;">7g</div>
+                      <div style="font-size:6px;color:#4a9060;font-weight:600;">Fiber 纤维</div>
+                      <div style="font-size:5.5px;color:#9ab49a;">25% daily</div>
+                    </div>
+                    <div style="background:#f0fdf4;border-radius:6px;padding:4px 3px;text-align:center;">
+                      <div style="font-size:12px;font-weight:800;color:#1e4a34;line-height:1;">60g</div>
+                      <div style="font-size:6px;color:#4a9060;font-weight:600;">Protein 蛋白质</div>
+                      <div style="font-size:5.5px;color:#9ab49a;">120% daily</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Food name + bilingual summary -->
+                <div style="padding:7px 10px;flex-shrink:0;border-bottom:1px solid #e8f5ee;background:white;">
+                  <div style="font-size:9px;font-weight:700;color:#0d1e14;margin-bottom:1px;">🍖 Braised Lamb Shank with Mashed Potatoes and Broccolini</div>
+                  <div style="font-size:7.5px;color:#4a9060;margin-bottom:3px;">红烧羊小腿配土豆泥和西兰花</div>
+                  <div style="font-size:7px;font-weight:600;color:#1e4a34;margin-bottom:1px;">Summary | 摘要</div>
+                  <div style="font-size:7px;color:#4a7050;line-height:1.45;">High in protein and saturated fat. Rich flavour but consider portion size for your conditions.</div>
+                  <div style="font-size:6.5px;color:#6b8f72;line-height:1.4;margin-top:1px;">高蛋白，饱和脂肪较高。美味但请注意份量。</div>
+                </div>
+                <!-- Practical tips — bilingual -->
+                <div style="padding:7px 10px;flex:1;overflow:hidden;background:white;">
+                  <div style="font-size:7px;font-weight:700;color:#1e4a34;margin-bottom:4px;">💡 Practical Tips | 实用建议</div>
+                  <div style="display:flex;flex-direction:column;gap:3px;">
+                    <div style="font-size:7px;color:#374151;line-height:1.4;padding-left:8px;position:relative;"><span style="position:absolute;left:0;color:#4caf50;">›</span>Choose leaner cuts or trim visible fat. <span style="color:#6b8f72;">选择较瘦的部位。</span></div>
+                    <div style="font-size:7px;color:#374151;line-height:1.4;padding-left:8px;position:relative;"><span style="position:absolute;left:0;color:#4caf50;">›</span>Opt for a smaller portion. <span style="color:#6b8f72;">选择较小份量。</span></div>
+                    <div style="font-size:7px;color:#374151;line-height:1.4;padding-left:8px;position:relative;"><span style="position:absolute;left:0;color:#4caf50;">›</span>Add broccoli or salad for fibre. <span style="color:#6b8f72;">加西兰花增加纤维。</span></div>
+                    <div style="font-size:7px;color:#374151;line-height:1.4;padding-left:8px;position:relative;"><span style="position:absolute;left:0;color:#4caf50;">›</span>Ask for sauce on the side. <span style="color:#6b8f72;">酱汁另上。</span></div>
+                  </div>
+                </div>
+                <!-- Action bar -->
+                <div style="padding:7px 10px;background:#1e4a34;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+                  <span style="font-size:8px;color:rgba(255,255,255,.8);font-weight:500;">Analyze Another | 分析另外食物</span>
+                  <div style="display:flex;gap:5px;">
+                    <button style="background:rgba(255,255,255,.15);color:white;border:none;border-radius:6px;padding:4px 8px;font-size:7.5px;font-weight:600;cursor:pointer;font-family:inherit;">📄 PDF</button>
+                    <button style="background:rgba(255,255,255,.15);color:white;border:none;border-radius:6px;padding:4px 8px;font-size:7.5px;font-weight:600;cursor:pointer;font-family:inherit;">🔗 Share</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Step dots + label -->
+        <div class="how-step-dots" id="howDots">
+          <div class="how-dot active" onclick="howGoTo(1)"></div>
+          <div class="how-dot" onclick="howGoTo(2)"></div>
+          <div class="how-dot" onclick="howGoTo(3)"></div>
+        </div>
+        <div class="how-screen-label" id="howScreenLabel">Set your language — Step 1 of 3</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section" id="features">
+  <div class="container">
+    <div class="features-hdr reveal">
+      <div class="section-eyebrow">Features</div>
+      <h2 class="section-title">Built for your health reality</h2>
+    </div>
+    <div class="features-grid reveal">
+      <div class="feat-card">
+        <div class="feat-icon">🧠</div>
+        <h3 class="feat-title">AI Nutrition Analysis</h3>
+        <p class="feat-desc">Type a food name, upload a photo, or use the live camera scan. Nutrivon's AI delivers a complete nutritional breakdown — calories, macros, sugar, fat, sodium and more — in seconds.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🩺</div>
+        <h3 class="feat-title">Condition-Aware Suitability</h3>
+        <p class="feat-desc">Every result is filtered through your health conditions. Get a clear suitability rating, health warnings, and guidance specific to you — not generic advice.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📄</div>
+        <h3 class="feat-title">PDF Download</h3>
+        <p class="feat-desc">Download a beautifully formatted PDF report — includes the food photo, Nutrivon logo, 6 nutrition metrics with daily reference %, all your health condition assessments, bilingual summary, detailed explanation and practical tips. Perfect for sharing with your doctor or dietitian.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🔗</div>
+        <h3 class="feat-title">Share Results</h3>
+        <p class="feat-desc">Share your result as a public link or export as an image. Links contain only food analysis data — no personal information — and expire after 90 days. Recipients can view the full bilingual result instantly.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">⚠️</div>
+        <h3 class="feat-title">Health Warnings &amp; Practical Tips</h3>
+        <p class="feat-desc">When a food has concerns for your conditions, Nutrivon flags them clearly. Every result includes actionable, bilingual dietary tips to help you make better choices.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🕓</div>
+        <h3 class="feat-title">Analysis History</h3>
+        <p class="feat-desc">Your last 20 analyses are saved locally on your device for quick reference.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🌐</div>
+        <h3 class="feat-title">25 Languages Supported</h3>
+        <p class="feat-desc">Choose from 25 languages including English, Chinese, Hindi, Spanish, Malay, Arabic and more. Set a bilingual display — results shown in English plus your chosen language simultaneously.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section class="lang-section" id="languages">
+  <div class="container">
+    <div class="lang-layout">
+
+      <!-- LEFT: Info -->
+      <div class="lang-info reveal">
+        <div>
+          <div class="section-eyebrow">Global Reach</div>
+          <h2 class="section-title">Your nutrition,<br/>your language.</h2>
+          <p class="section-sub">Nutrivon speaks to you in your language — with a unique bilingual display that shows English alongside your chosen language simultaneously. Built for the world, not just one market.</p>
+        </div>
+
+        <div class="lang-stats-row">
+          <div class="lang-stat">
+            <span class="lang-stat-num">25</span>
+            <span class="lang-stat-lbl">Languages</span>
+          </div>
+          <div class="lang-stat-div"></div>
+          <div class="lang-stat">
+            <span class="lang-stat-num">2</span>
+            <span class="lang-stat-lbl">Languages shown at once</span>
+          </div>
+          <div class="lang-stat-div"></div>
+          <div class="lang-stat">
+            <span class="lang-stat-num">∞</span>
+            <span class="lang-stat-lbl">More coming</span>
+          </div>
+        </div>
+
+        <div class="lang-points">
+          <div class="lang-point">
+            <div class="lang-point-icon">🌐</div>
+            <div>
+              <div class="lang-point-title">True bilingual display</div>
+              <div class="lang-point-desc">Every result, tip and warning appears in English plus your chosen language simultaneously — no switching needed.</div>
+            </div>
+          </div>
+          <div class="lang-point">
+            <div class="lang-point-icon">🏳️</div>
+            <div>
+              <div class="lang-point-title">25 languages from day one</div>
+              <div class="lang-point-desc">Chinese, Hindi, Malay, Arabic, Spanish, French, Bengali, Portuguese, Russian, Japanese and more — covering billions of users.</div>
+            </div>
+          </div>
+          <div class="lang-point">
+            <div class="lang-point-icon">💾</div>
+            <div>
+              <div class="lang-point-title">Remembers your preference</div>
+              <div class="lang-point-desc">Set your language once and Nutrivon remembers it for every future analysis — no need to re-select.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flag strip — all 25 -->
+        <div class="lang-flag-strip">
+          <div class="lang-flag-pill">🇬🇧 English</div>
+          <div class="lang-flag-pill">🇨🇳 中文</div>
+          <div class="lang-flag-pill">🇮🇳 हिंदी</div>
+          <div class="lang-flag-pill">🇲🇾 Melayu</div>
+          <div class="lang-flag-pill">🇸🇦 العربية</div>
+          <div class="lang-flag-pill">🇪🇸 Español</div>
+          <div class="lang-flag-pill">🇫🇷 Français</div>
+          <div class="lang-flag-pill">🇧🇩 বাংলা</div>
+          <div class="lang-flag-pill">🇧🇷 Português</div>
+          <div class="lang-flag-pill">🇷🇺 Русский</div>
+          <div class="lang-flag-pill">🇵🇰 اردو</div>
+          <div class="lang-flag-pill">🇮🇩 Indonesia</div>
+          <div class="lang-flag-pill">🇩🇪 Deutsch</div>
+          <div class="lang-flag-pill">🇯🇵 日本語</div>
+          <div class="lang-flag-pill">🇰🇪 Swahili</div>
+          <div class="lang-flag-pill">🇮🇳 मराठी</div>
+          <div class="lang-flag-pill">🇮🇳 తెలుగు</div>
+          <div class="lang-flag-pill">🇹🇷 Türkçe</div>
+          <div class="lang-flag-pill">🇮🇳 தமிழ்</div>
+          <div class="lang-flag-pill">🇭🇰 粤語</div>
+          <div class="lang-flag-pill">🇻🇳 Tiếng Việt</div>
+          <div class="lang-flag-pill">🇰🇷 한국어</div>
+          <div class="lang-flag-pill">🇹🇭 ภาษาไทย</div>
+          <div class="lang-flag-pill">🇵🇭 Filipino</div>
+          <div class="lang-flag-pill">🇮🇹 Italiano</div>
+          <span class="lang-more">+ more coming soon</span>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Phone showing language grid — pixel-accurate to actual app -->
+      <div class="lang-phone-col reveal reveal-d1">
+        <div class="lang-phone-wrap">
+          <div class="lang-phone">
+            <div class="lang-phone-notch"></div>
+            <div class="lang-phone-body">
+
+              <!-- Header — matches actual app screenshot -->
+              <div class="lang-phone-hdr">
+                <!-- Sparkles -->
+                <div style="position:relative;width:100%;display:flex;align-items:center;justify-content:center;margin-bottom:3px;">
+                  <div style="position:absolute;left:22px;top:-2px;color:#f0d060;font-size:10px;opacity:.8;">✦</div>
+                  <div style="position:absolute;left:36px;top:10px;color:#f0d060;font-size:6px;opacity:.6;">✦</div>
+                  <img src="nutrivon-logo.png" style="width:52px;height:52px;object-fit:contain;" alt="Nutrivon"/>
+                  <div style="position:absolute;right:36px;top:-2px;color:#f0d060;font-size:6px;opacity:.6;">✦</div>
+                  <div style="position:absolute;right:20px;top:10px;color:#f0d060;font-size:10px;opacity:.8;">✦</div>
+                </div>
+                <div class="lang-phone-tagline">AI-powered nutrition guidance</div>
+                <div class="lang-phone-select">Select Your Language</div>
+                <div style="font-size:7px;color:rgba(255,255,255,.55);">选择你的语言</div>
+              </div>
+
+              <!-- Search bar -->
+              <div class="lang-phone-search">
+                <span>🔍</span>
+                <div>Search languages...</div>
+              </div>
+
+              <!-- Language grid — all 25 matching screenshot -->
+              <div class="lang-phone-grid">
+                <div class="lang-phone-grid-inner">
+                  <!-- Row 1 -->
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇬🇧</span><div class="lang-phone-lbl">English</div><div class="lang-phone-sub">English</div></div>
+                  <div class="lang-phone-card selected"><span class="lang-phone-flag">🇨🇳</span><div class="lang-phone-lbl">Mandarin</div><div class="lang-phone-sub">中文(普通话)</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇮🇳</span><div class="lang-phone-lbl">Hindi</div><div class="lang-phone-sub">हिंदी</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇪🇸</span><div class="lang-phone-lbl">Spanish</div><div class="lang-phone-sub">Español</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇫🇷</span><div class="lang-phone-lbl">French</div><div class="lang-phone-sub">Français</div></div>
+                  <!-- Row 2 -->
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇸🇦</span><div class="lang-phone-lbl">Arabic</div><div class="lang-phone-sub">العربية</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇧🇩</span><div class="lang-phone-lbl">Bengali</div><div class="lang-phone-sub">বাংলা</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇧🇷</span><div class="lang-phone-lbl">Portuguese</div><div class="lang-phone-sub">Português</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇷🇺</span><div class="lang-phone-lbl">Russian</div><div class="lang-phone-sub">Русский</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇵🇰</span><div class="lang-phone-lbl">Urdu</div><div class="lang-phone-sub">اردو</div></div>
+                  <!-- Row 3 -->
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇮🇩</span><div class="lang-phone-lbl">Indonesian</div><div class="lang-phone-sub">Bahasa</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇲🇾</span><div class="lang-phone-lbl">Malay</div><div class="lang-phone-sub">Bahasa Melayu</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇩🇪</span><div class="lang-phone-lbl">German</div><div class="lang-phone-sub">Deutsch</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇯🇵</span><div class="lang-phone-lbl">Japanese</div><div class="lang-phone-sub">日本語</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇰🇪</span><div class="lang-phone-lbl">Swahili</div><div class="lang-phone-sub">Kiswahili</div></div>
+                  <!-- Row 4 -->
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇮🇳</span><div class="lang-phone-lbl">Marathi</div><div class="lang-phone-sub">मराठी</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇮🇳</span><div class="lang-phone-lbl">Telugu</div><div class="lang-phone-sub">తెలుగు</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇹🇷</span><div class="lang-phone-lbl">Turkish</div><div class="lang-phone-sub">Türkçe</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇮🇳</span><div class="lang-phone-lbl">Tamil</div><div class="lang-phone-sub">தமிழ்</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇭🇰</span><div class="lang-phone-lbl">Cantonese</div><div class="lang-phone-sub">中文(廣東話)</div></div>
+                  <!-- Row 5 -->
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇻🇳</span><div class="lang-phone-lbl">Vietnamese</div><div class="lang-phone-sub">Tiếng Việt</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇰🇷</span><div class="lang-phone-lbl">Korean</div><div class="lang-phone-sub">한국어</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇹🇭</span><div class="lang-phone-lbl">Thai</div><div class="lang-phone-sub">ภาษาไทย</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇵🇭</span><div class="lang-phone-lbl">Filipino</div><div class="lang-phone-sub">Filipino</div></div>
+                  <div class="lang-phone-card"><span class="lang-phone-flag">🇮🇹</span><div class="lang-phone-lbl">Italian</div><div class="lang-phone-sub">Italiano</div></div>
+                </div>
+              </div>
+
+              <!-- Footer -->
+              <div class="lang-phone-footer">
+                <div class="lang-phone-footer-note">Remember my language</div>
+                <div class="lang-phone-footer-more">More languages coming soon</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HEALTH CONDITIONS -->
+<section class="hc-section" id="conditions">
+  <div class="container">
+    <div class="hc-hdr reveal">
+      <div class="section-eyebrow">Health Conditions</div>
+      <h2 class="section-title">Built for your specific health reality</h2>
+      <p class="section-sub" style="margin:0 auto;text-align:center;">23 preset conditions across 5 wellness categories — or type in your own. Nutrivon gives every analysis a lens that fits <em>you</em>.</p>
+    </div>
+
+    <div class="hc-layout reveal">
+
+      <!-- LEFT: phone mockup showing condition selection -->
+      <div class="hc-phone-col">
+        <div class="hc-phone-wrap">
+          <div class="hc-phone">
+            <!-- Notch -->
+            <div style="width:84px;height:22px;background:#0d0d0f;border-radius:0 0 13px 13px;margin:0 auto;"></div>
+            <!-- Screen -->
+            <div style="background:#c8e8d4;height:calc(100% - 21px);overflow:hidden;display:flex;flex-direction:column;gap:0;">
+
+              <!-- Input bar -->
+              <div style="background:#d8f0e8;padding:8px 10px;">
+                <div style="background:white;border-radius:8px;padding:6px 10px;font-size:9px;color:#8aab94;">例如：炒饭</div>
+              </div>
+
+              <!-- Conditions panel -->
+              <div style="background:#dbf0e9;flex:1;overflow:hidden;padding:10px 10px 0;">
+
+                <!-- Header -->
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;">
+                  <div>
+                    <div style="display:flex;align-items:center;gap:5px;">
+                      <span style="font-size:11px;font-weight:700;color:#1a4a28;">Health Conditions</span>
+                      <div style="width:14px;height:14px;border-radius:50%;background:#4caf50;display:flex;align-items:center;justify-content:center;font-size:7px;color:white;font-weight:700;">1</div>
+                    </div>
+                    <div style="font-size:8px;color:#4a9060;">健康状况</div>
+                  </div>
+                  <div style="width:14px;height:14px;border-radius:50%;border:1px solid #8ab49a;display:flex;align-items:center;justify-content:center;font-size:8px;color:#6a8a74;">ⓘ</div>
+                </div>
+
+                <!-- Subtitle -->
+                <div style="margin-bottom:8px;">
+                  <div style="font-size:9px;font-weight:600;color:#1a4a28;line-height:1.3;">Selection of more than one health condition is allowed</div>
+                  <div style="font-size:7.5px;color:#4a9060;">允许选择多个健康状况</div>
+                </div>
+
+                <!-- ACTIVE: Heart & Blood Health -->
+                <div style="background:#deecdf;border-radius:10px;border-left:3px solid #51ac2b;padding:8px 10px;margin-bottom:8px;display:flex;align-items:center;gap:8px;">
+                  <span style="font-size:16px;">🫀</span>
+                  <div>
+                    <div style="font-size:10px;font-weight:700;color:#1a4a28;">Heart &amp; Blood Health</div>
+                    <div style="font-size:8px;color:#3a9060;">心脏与血液健康</div>
+                  </div>
+                </div>
+
+                <!-- Condition chips -->
+                <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;">
+                  <div style="background:#cde0cf;border-radius:100px;padding:4px 9px;">
+                    <div style="font-size:8.5px;font-weight:500;color:#1a4a28;">Diabetes</div>
+                    <div style="font-size:6.5px;color:#4a8060;text-align:center;">糖尿病</div>
+                  </div>
+                  <div style="background:#cde0cf;border-radius:100px;padding:4px 9px;">
+                    <div style="font-size:8.5px;font-weight:500;color:#1a4a28;">High Blood Pressure</div>
+                    <div style="font-size:6.5px;color:#4a8060;text-align:center;">高血压</div>
+                  </div>
+                  <div style="background:#cde0cf;border-radius:100px;padding:4px 9px;">
+                    <div style="font-size:8.5px;font-weight:500;color:#1a4a28;">High Cholesterol</div>
+                    <div style="font-size:6.5px;color:#4a8060;text-align:center;">高胆固醇</div>
+                  </div>
+                  <div style="background:#cde0cf;border-radius:100px;padding:4px 9px;">
+                    <div style="font-size:8.5px;font-weight:500;color:#1a4a28;">Heart Disease</div>
+                    <div style="font-size:6.5px;color:#4a8060;text-align:center;">心脏病</div>
+                  </div>
+                  <div style="background:#cde0cf;border-radius:100px;padding:4px 9px;">
+                    <div style="font-size:8.5px;font-weight:500;color:#1a4a28;">Stroke Risk</div>
+                    <div style="font-size:6.5px;color:#4a8060;text-align:center;">中风风险</div>
+                  </div>
+                </div>
+
+                <!-- Digestion & Gut Health category (Cat 3) -->
+                <div style="background:#deecdf;border-radius:10px;border-left:3px solid #51ac2b;padding:8px 10px;margin-bottom:8px;display:flex;align-items:center;gap:8px;">
+                  <span style="font-size:16px;">🍽️</span>
+                  <div>
+                    <div style="font-size:10px;font-weight:700;color:#1a4a28;">Digestion &amp; Gut Health</div>
+                    <div style="font-size:8px;color:#3a9060;">消化与肠道健康</div>
+                  </div>
+                </div>
+
+                <!-- Gut chips -->
+                <div style="display:flex;flex-wrap:wrap;gap:5px;">
+                  <div style="background:#cde0cf;border-radius:100px;padding:4px 9px;">
+                    <div style="font-size:8.5px;font-weight:500;color:#1a4a28;">Acid Reflux</div>
+                    <div style="font-size:6.5px;color:#4a8060;text-align:center;">胃酸倒流</div>
+                  </div>
+                  <div style="background:#cde0cf;border-radius:100px;padding:4px 9px;">
+                    <div style="font-size:8.5px;font-weight:500;color:#1a4a28;">Gastritis</div>
+                    <div style="font-size:6.5px;color:#4a8060;text-align:center;">胃炎</div>
+                  </div>
+                  <div style="background:#cde0cf;border-radius:100px;padding:4px 9px;">
+                    <div style="font-size:8.5px;font-weight:500;color:#1a4a28;">IBS</div>
+                    <div style="font-size:6.5px;color:#4a8060;text-align:center;">肠易激综合症</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: condition categories + custom condition callout -->
+      <div class="hc-info-col">
+
+        <!-- 5 category cards -->
+        <div class="hc-cats">
+
+          <div class="hc-cat-card">
+            <div class="hc-cat-icon">🫀</div>
+            <div>
+              <div class="hc-cat-title">Heart &amp; Blood Health</div>
+              <div class="hc-cat-chips">Diabetes · High Blood Pressure · High Cholesterol · Heart Disease · Stroke Risk</div>
+            </div>
+          </div>
+
+          <div class="hc-cat-card">
+            <div class="hc-cat-icon">⚖️</div>
+            <div>
+              <div class="hc-cat-title">Weight &amp; Body Goals</div>
+              <div class="hc-cat-chips">Weight Loss · Weight Gain · Obesity · Underweight</div>
+            </div>
+          </div>
+
+          <div class="hc-cat-card">
+            <div class="hc-cat-icon">🍽️</div>
+            <div>
+              <div class="hc-cat-title">Digestion &amp; Gut Health</div>
+              <div class="hc-cat-chips">Acid Reflux (GERD) · Gastritis · IBS · Lactose Intolerance · Celiac Disease</div>
+            </div>
+          </div>
+
+          <div class="hc-cat-card">
+            <div class="hc-cat-icon">🧠</div>
+            <div>
+              <div class="hc-cat-title">General Health &amp; Special Conditions</div>
+              <div class="hc-cat-chips">Pregnancy · Anemia · Kidney Disease · Liver Disease · Cough &amp; Flu</div>
+            </div>
+          </div>
+
+          <div class="hc-cat-card">
+            <div class="hc-cat-icon">🦴</div>
+            <div>
+              <div class="hc-cat-title">Bone, Joint &amp; Inflammation</div>
+              <div class="hc-cat-chips">Joint Pain · Arthritis · Gout · Osteoporosis · Migraine</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Custom condition callout -->
+        <div class="hc-custom-box">
+          <div class="hc-custom-icon">✏️</div>
+          <div>
+            <div class="hc-custom-title">Not on the list? Add your own.</div>
+            <div class="hc-custom-desc">Type any condition under "Your Own Condition" and add as many as you need — for a truly personalized analysis every time.</div>
+          </div>
+        </div>
+
+        <!-- Stats row -->
+        <div class="hc-stats-row">
+          <div class="hc-stat"><span class="hc-stat-num">23</span><span class="hc-stat-lbl">Preset conditions</span></div>
+          <div class="hc-stat-div"></div>
+          <div class="hc-stat"><span class="hc-stat-num">5</span><span class="hc-stat-lbl">Wellness categories</span></div>
+          <div class="hc-stat-div"></div>
+          <div class="hc-stat"><span class="hc-stat-num">∞</span><span class="hc-stat-lbl">Custom conditions</span></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP PREVIEW -->
+<section class="preview-section" id="download">
+  <div class="container">
+    <div class="preview-layout">
+      <div class="preview-text">
+        <div class="section-eyebrow">Get the App</div>
+        <h2 class="preview-title">Your health, in your pocket</h2>
+        <p class="preview-sub">Nutrivon is available now as a full web app — no download needed. Native mobile apps for App Store and Google Play are coming soon.</p>
+        <div class="preview-badges">
+          <a href="#" class="prev-badge">
+            <span class="prev-badge-icon">🍎</span>
+            <div><div class="prev-badge-line1">Download on the</div><div class="prev-badge-line2">App Store</div></div>
+            <span class="prev-soon">Soon</span>
+          </a>
+          <a href="#" class="prev-badge">
+            <span class="prev-badge-icon">▶</span>
+            <div><div class="prev-badge-line1">Get it on</div><div class="prev-badge-line2">Google Play</div></div>
+            <span class="prev-soon">Soon</span>
+          </a>
+        </div>
+        <a href="#demo" class="preview-try">Try Web App Now →</a>
+        <p class="preview-note">Free · No sign-up required · Works on any device</p>
+      </div>
+      <div class="preview-phone-side">
+        <div class="prev-phone">
+          <div class="pp-notch"></div>
+          <div style="background:#edfaf0;padding:0;display:flex;flex-direction:column;height:calc(100% - 21px);overflow:hidden;">
+            <!-- Input section — keep -->
+            <div style="background:#dff5de;border-bottom:1px solid #c8e8c8;padding:7px 10px;flex-shrink:0;">
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span style="font-size:13px;">📷</span>
+                <div>
+                  <div style="font-size:8.5px;color:#2d6b28;font-weight:600;">Type · Upload photo · Live scan</div>
+                  <div style="font-size:7px;color:#4a9060;">输入 · 上传照片 · 实时扫描</div>
+                </div>
+              </div>
+            </div>
+            <!-- Warning banner — matches actual PDF -->
+            <div style="background:#fef2f2;border-bottom:1px solid #fca5a5;padding:6px 9px;display:flex;gap:5px;align-items:flex-start;flex-shrink:0;">
+              <span style="color:#dc2626;font-size:9px;flex-shrink:0;">⊗</span>
+              <div>
+                <div style="font-size:7.5px;font-weight:700;color:#dc2626;">Several considerations to be aware of</div>
+                <div style="font-size:6.5px;color:#991b1b;">有几点需要留意</div>
+                <div style="font-size:6.5px;color:#7c3a3a;margin-top:1px;">This food has multiple flags for the conditions you selected.</div>
+                <div style="font-size:6px;color:#9a5a5a;">这种食物对您所选的健康状况有多处需要关注。</div>
+              </div>
+            </div>
+            <!-- Food name bilingual -->
+            <div style="padding:5px 9px 3px;background:white;flex-shrink:0;">
+              <div style="font-size:10px;font-weight:700;color:#0d1e14;">🍖 Braised Lamb Shank with Mashed Potatoes and Broccolini</div>
+              <div style="font-size:7px;color:#4a9060;">炖羊腿配土豆泥和西兰花</div>
+            </div>
+            <!-- Nutrition Information — 6 fields from PDF: 700/8/45/800/7/50 -->
+            <div style="background:white;padding:4px 9px 5px;border-bottom:1px solid #e8f5ee;flex-shrink:0;">
+              <div style="font-size:6.5px;font-weight:700;color:#1e4a34;text-align:center;margin-bottom:3px;">Nutrition Information | 营养信息</div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;">
+                <div style="background:#f0fdf4;border-radius:5px;padding:3px 2px;text-align:center;">
+                  <div style="font-size:10px;font-weight:800;color:#1e4a34;line-height:1;">700</div>
+                  <div style="font-size:5.5px;color:#4a9060;font-weight:600;">kcal 卡路里</div>
+                  <div style="font-size:5px;color:#9ab49a;">35% daily</div>
+                </div>
+                <div style="background:#f0fdf4;border-radius:5px;padding:3px 2px;text-align:center;">
+                  <div style="font-size:10px;font-weight:800;color:#1e4a34;line-height:1;">8g</div>
+                  <div style="font-size:5.5px;color:#4a9060;font-weight:600;">Sugar 糖</div>
+                  <div style="font-size:5px;color:#9ab49a;">16% daily</div>
+                </div>
+                <div style="background:#f0fdf4;border-radius:5px;padding:3px 2px;text-align:center;">
+                  <div style="font-size:10px;font-weight:800;color:#1e4a34;line-height:1;">45g</div>
+                  <div style="font-size:5.5px;color:#4a9060;font-weight:600;">Fat 脂肪</div>
+                  <div style="font-size:5px;color:#9ab49a;">64% daily</div>
+                </div>
+                <div style="background:#f0fdf4;border-radius:5px;padding:3px 2px;text-align:center;">
+                  <div style="font-size:10px;font-weight:800;color:#1e4a34;line-height:1;">800</div>
+                  <div style="font-size:5.5px;color:#4a9060;font-weight:600;">mg Salt 盐</div>
+                  <div style="font-size:5px;color:#9ab49a;">35% daily</div>
+                </div>
+                <div style="background:#f0fdf4;border-radius:5px;padding:3px 2px;text-align:center;">
+                  <div style="font-size:10px;font-weight:800;color:#1e4a34;line-height:1;">7g</div>
+                  <div style="font-size:5.5px;color:#4a9060;font-weight:600;">Fiber 纤维</div>
+                  <div style="font-size:5px;color:#9ab49a;">25% daily</div>
+                </div>
+                <div style="background:#f0fdf4;border-radius:5px;padding:3px 2px;text-align:center;">
+                  <div style="font-size:10px;font-weight:800;color:#1e4a34;line-height:1;">50g</div>
+                  <div style="font-size:5.5px;color:#4a9060;font-weight:600;">Protein 蛋白质</div>
+                  <div style="font-size:5px;color:#9ab49a;">100% daily</div>
+                </div>
+              </div>
+            </div>
+            <!-- Conditions chips -->
+            <div style="padding:4px 9px;display:flex;gap:4px;flex-wrap:wrap;flex-shrink:0;background:white;border-bottom:1px solid #e8f5ee;">
+              <div style="background:#edfaf0;border:1px solid #7bc47f;border-radius:100px;padding:2px 7px;font-size:7.5px;color:#2d6b28;font-weight:500;">🩺 Diabetes</div>
+              <div style="background:#edfaf0;border:1px solid #7bc47f;border-radius:100px;padding:2px 7px;font-size:7.5px;color:#2d6b28;font-weight:500;">❤️ High BP</div>
+              <div style="background:#edfaf0;border:1px solid #7bc47f;border-radius:100px;padding:2px 7px;font-size:7.5px;color:#2d6b28;font-weight:500;">🫀 Heart</div>
+            </div>
+            <!-- Summary — bilingual from PDF -->
+            <div style="padding:5px 9px;background:#edfaf0;flex:1;overflow:hidden;">
+              <div style="font-size:7px;font-weight:700;color:#1e4a34;margin-bottom:2px;">Summary | 摘要</div>
+              <div style="font-size:7px;color:#374151;line-height:1.45;">Rich in protein and fat, served with mashed potatoes and broccolini. High in saturated fat and potentially sodium from the sauce.</div>
+              <div style="font-size:6.5px;color:#6b8f72;line-height:1.4;margin-top:2px;">富含蛋白质和脂肪，配土豆泥和西兰花。酱汁中饱和脂肪和钠含量较高。</div>
+            </div>
+            <!-- PDF & Share buttons — keep -->
+            <div style="display:flex;gap:5px;padding:6px 9px;flex-shrink:0;background:#edfaf0;border-top:1px solid #d1f0dc;">
+              <button style="flex:1;background:#1e4a34;color:white;border:none;border-radius:8px;padding:6px 4px;font-size:8.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:3px;font-family:inherit;">📄 PDF</button>
+              <button style="flex:1;background:white;color:#1e4a34;border:1.5px solid #7bc47f;border-radius:8px;padding:6px 4px;font-size:8.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:3px;font-family:inherit;">🔗 Share</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section class="demo-section" id="demo">
+  <div class="container">
+    <div class="demo-hdr reveal">
+      <div class="section-eyebrow">Live Demo</div>
+      <h2 class="section-title">See &amp; try Nutrivon</h2>
+      <p class="section-sub" style="margin:0 auto;">Watch a walkthrough of the full app experience, or jump straight in and try it live in your browser.</p>
+    </div>
+
+    <div class="demo-tabs">
+      <button class="demo-tab active" onclick="switchTab('video')">▶ App Walkthrough</button>
+      <button class="demo-tab" onclick="switchTab('live')">⚡ Try Live</button>
+    </div>
+
+    <div class="demo-panels">
+
+      <!-- VIDEO WALKTHROUGH -->
+      <div class="demo-panel active" id="panel-video">
+        <div class="video-demo reveal">
+          <div class="video-top-bar">
+            <div class="video-top-left">
+              <div class="b-dots"><div class="b-dot b-dot-r"></div><div class="b-dot b-dot-y"></div><div class="b-dot b-dot-g"></div></div>
+              <div><div class="video-title-bar">Nutrivon — App Walkthrough</div><div class="video-subtitle">From camera scan to bilingual result in seconds</div></div>
+            </div>
+          </div>
+          <div class="video-progress"><div class="video-progress-fill" id="progressFill"></div></div>
+          <div class="video-stage">
+            <div class="video-glow"></div>
+            <div class="video-phone-frame">
+              <div class="video-phone-outer">
+                <div class="video-phone-notch"></div>
+
+                <!-- SLIDE 1: Language Selection — actual app first screen -->
+                <div class="slide active" id="slide-1" style="padding:0;overflow:hidden;background:linear-gradient(180deg,#3a9e28 0%,#4db835 40%,#dbf0e9 40%,#dbf0e9 100%);">
+                  <!-- Green header -->
+                  <div style="padding:9px 12px 7px;display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0;background:linear-gradient(160deg,#2d8a1a 0%,#3db82e 40%,#5ed040 100%);">
+                    <div style="position:relative;width:100%;display:flex;align-items:center;justify-content:center;">
+                      <div style="position:absolute;left:16px;top:-1px;color:#f0d060;font-size:10px;opacity:.8;">✦</div>
+                      <div style="position:absolute;left:30px;top:10px;color:#f0d060;font-size:6px;opacity:.6;">✦</div>
+                      <img src="nutrivon-logo.png" style="width:34px;height:34px;object-fit:contain;" alt="Nutrivon"/>
+                      <div style="position:absolute;right:28px;top:-1px;color:#f0d060;font-size:6px;opacity:.6;">✦</div>
+                      <div style="position:absolute;right:14px;top:10px;color:#f0d060;font-size:10px;opacity:.8;">✦</div>
+                    </div>
+                    <div style="font-size:7px;color:rgba(255,255,255,.8);">AI-powered nutrition guidance</div>
+                    <div style="font-size:8px;color:#e8d56a;font-weight:700;">Select Your Language</div>
+                    <div style="font-size:6.5px;color:rgba(255,255,255,.6);">选择你的语言</div>
+                  </div>
+                  <!-- Search bar -->
+                  <div style="background:#f5fff5;margin:6px 8px 0;border-radius:8px;padding:5px 9px;display:flex;align-items:center;gap:5px;border:1px solid rgba(255,255,255,.5);">
+                    <span style="font-size:9px;color:#9ab49a;">🔍</span>
+                    <div style="font-size:8px;color:#9ab49a;">Search languages...</div>
+                  </div>
+                  <!-- Language grid -->
+                  <div style="flex:1;padding:6px 7px 4px;background:#f5fff5;overflow:hidden;">
+                    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;">
+                      <div style="background:white;border-radius:8px;padding:4px 2px;text-align:center;border:1px solid rgba(200,230,200,.5);"><span style="font-size:13px;">🇬🇧</span><div style="font-size:5.5px;font-weight:600;color:#1a4a28;">English</div></div>
+                      <div style="background:#d6f2d8;border:1.5px solid #51ac2b;border-radius:8px;padding:4px 2px;text-align:center;"><span style="font-size:13px;">🇨🇳</span><div style="font-size:5.5px;font-weight:700;color:#1a4a28;">中文</div><div style="font-size:4.5px;color:#4a9060;">Mandarin</div></div>
+                      <div style="background:white;border-radius:8px;padding:4px 2px;text-align:center;border:1px solid rgba(200,230,200,.5);"><span style="font-size:13px;">🇮🇳</span><div style="font-size:5.5px;font-weight:600;color:#1a4a28;">हिंदी</div></div>
+                      <div style="background:white;border-radius:8px;padding:4px 2px;text-align:center;border:1px solid rgba(200,230,200,.5);"><span style="font-size:13px;">🇪🇸</span><div style="font-size:5.5px;font-weight:600;color:#1a4a28;">Español</div></div>
+                      <div style="background:white;border-radius:8px;padding:4px 2px;text-align:center;border:1px solid rgba(200,230,200,.5);"><span style="font-size:13px;">🇫🇷</span><div style="font-size:5.5px;font-weight:600;color:#1a4a28;">Français</div></div>
+                      <div style="background:white;border-radius:8px;padding:4px 2px;text-align:center;border:1px solid rgba(200,230,200,.5);"><span style="font-size:13px;">🇸🇦</span><div style="font-size:5.5px;font-weight:600;color:#1a4a28;">العربية</div></div>
+                      <div style="background:white;border-radius:8px;padding:4px 2px;text-align:center;border:1px solid rgba(200,230,200,.5);"><span style="font-size:13px;">🇲🇾</span><div style="font-size:5.5px;font-weight:600;color:#1a4a28;">Melayu</div></div>
+                      <div style="background:white;border-radius:8px;padding:4px 2px;text-align:center;border:1px solid rgba(200,230,200,.5);"><span style="font-size:13px;">🇩🇪</span><div style="font-size:5.5px;font-weight:600;color:#1a4a28;">Deutsch</div></div>
+                      <div style="background:white;border-radius:8px;padding:4px 2px;text-align:center;border:1px solid rgba(200,230,200,.5);"><span style="font-size:13px;">🇯🇵</span><div style="font-size:5.5px;font-weight:600;color:#1a4a28;">日本語</div></div>
+                      <div style="background:white;border-radius:8px;padding:4px 2px;text-align:center;border:1px solid rgba(200,230,200,.5);"><span style="font-size:13px;">🇷🇺</span><div style="font-size:5.5px;font-weight:600;color:#1a4a28;">Русский</div></div>
+                      <div style="background:white;border-radius:8px;padding:4px 2px;text-align:center;border:1px solid rgba(200,230,200,.5);"><span style="font-size:13px;">🇧🇩</span><div style="font-size:5.5px;font-weight:600;color:#1a4a28;">বাংলা</div></div>
+                      <div style="background:white;border-radius:8px;padding:4px 2px;text-align:center;border:1px solid rgba(200,230,200,.5);"><span style="font-size:13px;">🇵🇰</span><div style="font-size:5.5px;font-weight:600;color:#1a4a28;">اردو</div></div>
+                      <div style="background:white;border-radius:8px;padding:4px 2px;text-align:center;border:1px solid rgba(200,230,200,.5);"><span style="font-size:13px;">🇰🇷</span><div style="font-size:5.5px;font-weight:600;color:#1a4a28;">한국어</div></div>
+                      <div style="background:white;border-radius:8px;padding:4px 2px;text-align:center;border:1px solid rgba(200,230,200,.5);"><span style="font-size:13px;">🇻🇳</span><div style="font-size:5.5px;font-weight:600;color:#1a4a28;">Việt</div></div>
+                      <div style="background:white;border-radius:8px;padding:4px 2px;text-align:center;border:1px solid rgba(200,230,200,.5);"><span style="font-size:13px;">🇹🇭</span><div style="font-size:5.5px;font-weight:600;color:#1a4a28;">ภาษาไทย</div></div>
+                    </div>
+                    <div style="text-align:center;margin-top:4px;font-size:6.5px;color:#4a9060;font-style:italic;">+10 more · 25 total</div>
+                  </div>
+                  <!-- Footer -->
+                  <div style="background:#f5fff5;padding:5px 9px;text-align:center;border-top:1px solid rgba(200,230,200,.4);">
+                    <div style="font-size:7px;color:#4a9060;font-weight:500;">Remember my language · 记住我的语言</div>
+                    <div style="font-size:6px;color:#6b8f72;font-style:italic;">More languages coming soon</div>
+                  </div>
+                </div>
+
+                <!-- SLIDE 2: Camera Scan + Food input -->
+                <div class="slide" id="slide-2" style="padding:0;overflow:hidden;background:linear-gradient(180deg,#2d6b28 0%,#4a9e30 35%,#c8c8c8 35%,#c8c8c8 85%,#2d6b28 85%,#3a8a25 100%);">
+                  <!-- Green header zone -->
+                  <div style="background:linear-gradient(135deg,#2d6b28,#4caf50);padding:10px 10px 8px;text-align:center;">
+                    <div style="font-size:8px;color:rgba(255,255,255,0.7);font-weight:500;letter-spacing:.05em;margin-bottom:4px;">AI-powered nutrition guidance</div>
+                    <div style="font-size:7.5px;color:rgba(255,255,255,0.55);margin-bottom:0;">智能食物扫描与健康洞察</div>
+                  </div>
+                  <!-- Camera viewfinder -->
+                  <div style="background:url('lamb-shank.jpg') 33% 53% / cover no-repeat;position:relative;height:210px;display:flex;align-items:center;justify-content:center;overflow:hidden;filter:brightness(.88);">
+                    <!-- Scan bracket corners — cyan like actual app -->
+                    <div style="position:absolute;top:12px;left:12px;width:20px;height:20px;border-top:2.5px solid #00d4e8;border-left:2.5px solid #00d4e8;border-radius:2px 0 0 0;"></div>
+                    <div style="position:absolute;top:12px;right:12px;width:20px;height:20px;border-top:2.5px solid #00d4e8;border-right:2.5px solid #00d4e8;border-radius:0 2px 0 0;"></div>
+                    <div style="position:absolute;bottom:12px;left:12px;width:20px;height:20px;border-bottom:2.5px solid #00d4e8;border-left:2.5px solid #00d4e8;border-radius:0 0 0 2px;"></div>
+                    <div style="position:absolute;bottom:12px;right:12px;width:20px;height:20px;border-bottom:2.5px solid #00d4e8;border-right:2.5px solid #00d4e8;border-radius:0 0 2px 0;"></div>
+                    <!-- Scan line animation -->
+                    <div style="position:absolute;left:12px;right:12px;height:1.5px;background:linear-gradient(90deg,transparent,#00d4e8,transparent);animation:scanLine 2s ease-in-out infinite;top:50%;"></div>
+                    
+                    <!-- Overlay label -->
+                    <div style="position:absolute;bottom:18px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.45);border-radius:100px;padding:4px 14px;text-align:center;white-space:nowrap;">
+                      <div style="font-size:9px;color:white;font-weight:500;">Point camera at food</div>
+                      <div style="font-size:7.5px;color:rgba(255,255,255,0.7);">将相机对准食物</div>
+                    </div>
+                  </div>
+                  <!-- Bottom green zone with camera button -->
+                  <div style="background:linear-gradient(180deg,#3a8a25,#2d6b28);padding:12px;display:flex;align-items:center;justify-content:center;flex:1;">
+                    <div style="width:40px;height:40px;border-radius:50%;border:2.5px solid rgba(255,255,255,0.8);background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:18px;">📷</div>
+                  </div>
+                </div>
+
+                <!-- SLIDE 3: Full Result — real Braised Lamb Shank data -->
+                <!-- SLIDE 3: Health Conditions selection — actual app UI -->
+                <div class="slide" id="slide-3" style="padding:0;overflow:hidden;background:#dbf0e9;display:flex;flex-direction:column;">
+                  <!-- Food input bar -->
+                  <div style="background:#c8e8d4;padding:7px 10px;flex-shrink:0;border-bottom:1px solid #b8d8c4;">
+                    <div style="background:white;border-radius:8px;padding:5px 10px;font-size:8.5px;color:#2d6b28;font-weight:500;">🍖 Braised Lamb Shank</div>
+                  </div>
+                  <!-- Conditions panel -->
+                  <div style="flex:1;overflow:hidden;padding:8px 9px 0;display:flex;flex-direction:column;gap:5px;">
+                    <!-- Header -->
+                    <div style="display:flex;align-items:center;justify-content:space-between;">
+                      <div>
+                        <div style="display:flex;align-items:center;gap:5px;">
+                          <span style="font-size:10.5px;font-weight:700;color:#1a4a28;">Health Conditions</span>
+                          <div style="width:14px;height:14px;border-radius:50%;background:#4caf50;display:flex;align-items:center;justify-content:center;font-size:7px;color:white;font-weight:700;">3</div>
+                        </div>
+                        <div style="font-size:7.5px;color:#4a9060;">健康状况</div>
+                      </div>
+                      <div style="width:14px;height:14px;border-radius:50%;border:1px solid #8ab49a;display:flex;align-items:center;justify-content:center;font-size:8px;color:#6a8a74;">ⓘ</div>
+                    </div>
+                    <!-- Subtitle -->
+                    <div>
+                      <div style="font-size:8.5px;font-weight:600;color:#1a4a28;line-height:1.3;">Selection of more than one health condition is allowed</div>
+                      <div style="font-size:7px;color:#4a9060;">允许选择多个健康状况</div>
+                    </div>
+                    <!-- Heart & Blood Health category -->
+                    <div style="background:#deecdf;border-radius:9px;border-left:3px solid #51ac2b;padding:6px 9px;display:flex;align-items:center;gap:7px;flex-shrink:0;">
+                      <span style="font-size:14px;">🫀</span>
+                      <div>
+                        <div style="font-size:9.5px;font-weight:700;color:#1a4a28;">Heart &amp; Blood Health</div>
+                        <div style="font-size:7px;color:#3a9060;">心脏与血液健康</div>
+                      </div>
+                    </div>
+                    <!-- Condition chips -->
+                    <div style="display:flex;flex-wrap:wrap;gap:4px;">
+                      <div style="background:#4caf50;border-radius:8px;padding:3px 8px;"><div style="font-size:7.5px;font-weight:600;color:white;">Diabetes</div><div style="font-size:6px;color:rgba(255,255,255,.8);text-align:center;">糖尿病</div></div>
+                      <div style="background:#4caf50;border-radius:8px;padding:3px 8px;"><div style="font-size:7.5px;font-weight:600;color:white;">High Blood Pressure</div><div style="font-size:6px;color:rgba(255,255,255,.8);text-align:center;">高血压</div></div>
+                      <div style="background:#cde0cf;border-radius:8px;padding:3px 8px;"><div style="font-size:7.5px;font-weight:500;color:#1a4a28;">High Cholesterol</div><div style="font-size:6px;color:#4a8060;text-align:center;">高胆固醇</div></div>
+                      <div style="background:#cde0cf;border-radius:8px;padding:3px 8px;"><div style="font-size:7.5px;font-weight:500;color:#1a4a28;">Heart Disease</div><div style="font-size:6px;color:#4a8060;text-align:center;">心脏病</div></div>
+                      <div style="background:#cde0cf;border-radius:8px;padding:3px 8px;"><div style="font-size:7.5px;font-weight:500;color:#1a4a28;">Stroke Risk</div><div style="font-size:6px;color:#4a8060;text-align:center;">中风风险</div></div>
+                    </div>
+                    <!-- Digestion category -->
+                    <div style="background:#deecdf;border-radius:9px;border-left:3px solid #51ac2b;padding:6px 9px;display:flex;align-items:center;gap:7px;flex-shrink:0;">
+                      <span style="font-size:14px;">🍽️</span>
+                      <div>
+                        <div style="font-size:9.5px;font-weight:700;color:#1a4a28;">Digestion &amp; Gut Health</div>
+                        <div style="font-size:7px;color:#3a9060;">消化与肠道健康</div>
+                      </div>
+                    </div>
+                    <div style="display:flex;flex-wrap:wrap;gap:4px;">
+                      <div style="background:#cde0cf;border-radius:8px;padding:3px 8px;"><div style="font-size:7.5px;font-weight:500;color:#1a4a28;">Acid Reflux</div><div style="font-size:6px;color:#4a8060;text-align:center;">胃酸倒流</div></div>
+                      <div style="background:#cde0cf;border-radius:8px;padding:3px 8px;"><div style="font-size:7.5px;font-weight:500;color:#1a4a28;">Gastritis</div><div style="font-size:6px;color:#4a8060;text-align:center;">胃炎</div></div>
+                      <div style="background:#cde0cf;border-radius:8px;padding:3px 8px;"><div style="font-size:7.5px;font-weight:500;color:#1a4a28;">IBS</div><div style="font-size:6px;color:#4a8060;text-align:center;">肠易激</div></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="slide" id="slide-4" style="background:#edfaf0;padding:0;overflow:hidden;display:flex;flex-direction:column;">
+                  <!-- Warning bar -->
+                  <div style="background:#fef2f2;border-bottom:1px solid #fca5a5;padding:6px 9px;display:flex;gap:5px;align-items:center;flex-shrink:0;">
+                    <span style="color:#dc2626;font-size:9px;">⚠</span>
+                    <div>
+                      <div style="font-size:7.5px;font-weight:700;color:#dc2626;">Several considerations to be aware of</div>
+                      <div style="font-size:6.5px;color:#991b1b;">有几点需要留意</div>
+                    </div>
+                  </div>
+                  <!-- Nutrition Information 营养信息 — 6 fields, real data -->
+                  <div style="background:white;padding:5px 8px;flex-shrink:0;border-bottom:1px solid #e8f5ee;">
+                    <div style="font-size:6.5px;font-weight:700;color:#1e4a34;text-align:center;margin-bottom:4px;">Nutrition Information | 营养信息</div>
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;">
+                      <div style="background:#f0fdf4;border-radius:5px;padding:3px;text-align:center;">
+                        <div style="font-size:11px;font-weight:800;color:#1e4a34;line-height:1;">750</div>
+                        <div style="font-size:5.5px;color:#4a9060;">kcal 卡路里</div>
+                        <div style="font-size:5px;color:#9ab49a;">38%</div>
+                      </div>
+                      <div style="background:#f0fdf4;border-radius:5px;padding:3px;text-align:center;">
+                        <div style="font-size:11px;font-weight:800;color:#1e4a34;line-height:1;">8g</div>
+                        <div style="font-size:5.5px;color:#4a9060;">Sugar 糖</div>
+                        <div style="font-size:5px;color:#9ab49a;">16%</div>
+                      </div>
+                      <div style="background:#f0fdf4;border-radius:5px;padding:3px;text-align:center;">
+                        <div style="font-size:11px;font-weight:800;color:#1e4a34;line-height:1;">45g</div>
+                        <div style="font-size:5.5px;color:#4a9060;">Fat 脂肪</div>
+                        <div style="font-size:5px;color:#9ab49a;">64%</div>
+                      </div>
+                      <div style="background:#f0fdf4;border-radius:5px;padding:3px;text-align:center;">
+                        <div style="font-size:11px;font-weight:800;color:#1e4a34;line-height:1;">1200</div>
+                        <div style="font-size:5.5px;color:#4a9060;">mg Salt 盐</div>
+                        <div style="font-size:5px;color:#9ab49a;">52%</div>
+                      </div>
+                      <div style="background:#f0fdf4;border-radius:5px;padding:3px;text-align:center;">
+                        <div style="font-size:11px;font-weight:800;color:#1e4a34;line-height:1;">7g</div>
+                        <div style="font-size:5.5px;color:#4a9060;">Fiber 纤维</div>
+                        <div style="font-size:5px;color:#9ab49a;">25%</div>
+                      </div>
+                      <div style="background:#f0fdf4;border-radius:5px;padding:3px;text-align:center;">
+                        <div style="font-size:11px;font-weight:800;color:#1e4a34;line-height:1;">60g</div>
+                        <div style="font-size:5.5px;color:#4a9060;">Protein 蛋白质</div>
+                        <div style="font-size:5px;color:#9ab49a;">120%</div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Food + suitability -->
+                  <div style="padding:6px 9px;background:white;border-bottom:1px solid #e8f5ee;flex-shrink:0;">
+                    <div style="font-size:9px;font-weight:700;color:#0d1e14;margin-bottom:2px;">🍖 Braised Lamb Shank with Mashed Potatoes and Broccolini</div>
+                    <div style="font-size:7px;color:#4a9060;margin-bottom:3px;">红烧羊小腿配土豆泥和西兰花</div>
+                    <div style="background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:2px 7px;display:inline-block;font-size:7px;font-weight:600;color:#856404;">⚠ Caution — Heart Disease</div>
+                  </div>
+                  <!-- Summary bilingual -->
+                  <div style="padding:6px 9px;background:#edfaf0;border-bottom:1px solid #d1f0dc;flex-shrink:0;">
+                    <div style="font-size:7px;font-weight:700;color:#1e4a34;margin-bottom:2px;">Summary | 摘要</div>
+                    <div style="font-size:7px;color:#374151;line-height:1.45;">High in protein, rich in saturated fat. Moderate portion recommended.</div>
+                    <div style="font-size:6.5px;color:#6b8f72;line-height:1.4;">高蛋白，饱和脂肪较高。建议适量食用。</div>
+                  </div>
+                  <!-- Tips -->
+                  <div style="padding:6px 9px;background:white;flex:1;overflow:hidden;">
+                    <div style="font-size:7px;font-weight:700;color:#1e4a34;margin-bottom:3px;">💡 Practical Tips | 实用建议</div>
+                    <div style="font-size:7px;color:#374151;line-height:1.45;padding-left:8px;position:relative;margin-bottom:2px;"><span style="position:absolute;left:0;color:#4caf50;font-weight:700;">›</span>Choose leaner cuts &amp; trim fat. <span style="color:#6b8f72;">选较瘦部位。</span></div>
+                    <div style="font-size:7px;color:#374151;line-height:1.45;padding-left:8px;position:relative;margin-bottom:2px;"><span style="position:absolute;left:0;color:#4caf50;font-weight:700;">›</span>Smaller portion size. <span style="color:#6b8f72;">减少份量。</span></div>
+                    <div style="font-size:7px;color:#374151;line-height:1.45;padding-left:8px;position:relative;"><span style="position:absolute;left:0;color:#4caf50;font-weight:700;">›</span>Add broccoli for fibre. <span style="color:#6b8f72;">加西兰花增纤维。</span></div>
+                  </div>
+                  <!-- Action bar -->
+                  <div style="padding:6px 9px;background:#1e4a34;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+                    <span style="font-size:7px;color:rgba(255,255,255,.75);">Analyze Another | 分析另外食物</span>
+                    <div style="display:flex;gap:4px;">
+                      <button style="background:rgba(255,255,255,.15);color:white;border:none;border-radius:5px;padding:4px 7px;font-size:7px;font-weight:600;cursor:pointer;font-family:inherit;">📄 PDF</button>
+                      <button style="background:rgba(255,255,255,.15);color:white;border:none;border-radius:5px;padding:4px 7px;font-size:7px;font-weight:600;cursor:pointer;font-family:inherit;">🔗 Share</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SLIDE 4: PDF Download -->
+                <div class="slide" id="slide-5" style="background:#f0f0f0;padding:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+                  <!-- PDF document preview — white card like a real page -->
+                  <div style="background:white;border-radius:4px;box-shadow:0 4px 16px rgba(0,0,0,.25);width:88%;max-height:94%;overflow:hidden;display:flex;flex-direction:column;">
+                    <!-- PDF header — logo + title -->
+                    <div style="background:white;padding:8px 10px 5px;border-bottom:1px solid #e8e8e8;text-align:center;flex-shrink:0;">
+                      <img src="nutrivon-logo.png" style="width:28px;height:28px;object-fit:contain;margin-bottom:2px;" alt="Nutrivon"/>
+                      <div style="font-size:6px;color:#555;margin-bottom:1px;">AI-powered nutrition guidance</div>
+                      <div style="font-size:6px;color:#777;">智能食物扫描与健康洞察</div>
+                    </div>
+                    <!-- Food name bilingual -->
+                    <div style="padding:5px 8px 3px;border-bottom:1px solid #f0f0f0;flex-shrink:0;">
+                      <div style="font-size:7.5px;font-weight:800;color:#1e4a34;text-align:center;line-height:1.3;">Braised Lamb Shank with Mashed Potatoes and Broccolini</div>
+                      <div style="font-size:6px;color:#4a9060;text-align:center;margin-top:1px;">炖羊腿配土豆泥和西兰花</div>
+                    </div>
+                    <!-- Warning banner -->
+                    <div style="background:#fef2f2;border-left:3px solid #dc2626;padding:4px 7px;margin:4px 6px;border-radius:3px;flex-shrink:0;">
+                      <div style="font-size:6.5px;font-weight:700;color:#dc2626;">Several considerations to be aware of</div>
+                      <div style="font-size:5.5px;color:#991b1b;">有几点需要留意</div>
+                    </div>
+                    <!-- Nutrition section title -->
+                    <div style="text-align:center;padding:3px 8px 2px;flex-shrink:0;">
+                      <div style="font-size:7px;font-weight:700;color:#1e4a34;">Nutrition Information</div>
+                      <div style="font-size:5.5px;color:#555;">营养信息</div>
+                    </div>
+                    <!-- 6 nutrition fields — PDF data -->
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:0 6px 4px;flex-shrink:0;">
+                      <div style="text-align:center;padding:3px;border-bottom:1px solid #eee;">
+                        <div style="font-size:9px;font-weight:800;color:#1e4a34;">700 kcal</div>
+                        <div style="font-size:5px;color:#555;">Calories 卡路里</div>
+                        <div style="font-size:5px;color:#e57c00;">35% of daily reference</div>
+                      </div>
+                      <div style="text-align:center;padding:3px;border-bottom:1px solid #eee;">
+                        <div style="font-size:9px;font-weight:800;color:#1e4a34;">8 g</div>
+                        <div style="font-size:5px;color:#555;">Sugar 糖</div>
+                        <div style="font-size:5px;color:#e57c00;">16% of daily reference</div>
+                      </div>
+                      <div style="text-align:center;padding:3px;border-bottom:1px solid #eee;">
+                        <div style="font-size:9px;font-weight:800;color:#1e4a34;">45 g</div>
+                        <div style="font-size:5px;color:#555;">Fat 脂肪</div>
+                        <div style="font-size:5px;color:#e57c00;">64% of daily reference</div>
+                      </div>
+                      <div style="text-align:center;padding:3px;border-bottom:1px solid #eee;">
+                        <div style="font-size:9px;font-weight:800;color:#1e4a34;">800 mg</div>
+                        <div style="font-size:5px;color:#555;">Salt 盐</div>
+                        <div style="font-size:5px;color:#e57c00;">35% of daily reference</div>
+                      </div>
+                      <div style="text-align:center;padding:3px;">
+                        <div style="font-size:9px;font-weight:800;color:#1e4a34;">7 g</div>
+                        <div style="font-size:5px;color:#555;">Fiber 纤维</div>
+                        <div style="font-size:5px;color:#e57c00;">25% of daily reference</div>
+                      </div>
+                      <div style="text-align:center;padding:3px;">
+                        <div style="font-size:9px;font-weight:800;color:#1e4a34;">50 g</div>
+                        <div style="font-size:5px;color:#555;">Protein 蛋白质</div>
+                        <div style="font-size:5px;color:#1a7c34;">100% of daily reference</div>
+                      </div>
+                    </div>
+                    <!-- Footer bar -->
+                    <div style="background:#1e4a34;padding:4px 8px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+                      <div style="font-size:5.5px;color:rgba(255,255,255,.7);">Generated by Nutrivon · May 2026</div>
+                      <div style="font-size:6px;color:rgba(255,255,255,.9);font-weight:600;">📄 ↓</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="slide" id="slide-6" style="background:#edfaf0;">
+                  <div class="s-hdr">🔗 Share Result</div>
+                  <div class="s-share-wrap">
+                    <div class="s-share-card">
+                      <div class="s-share-title">Public link created</div>
+                      <div class="s-share-link">
+                        <span>nutrivon.app/r/x8k2p…</span>
+                        <button style="background:#1e4a34;color:white;border:none;border-radius:5px;padding:3px 8px;font-size:8px;font-weight:600;cursor:pointer;font-family:inherit;">Copy</button>
+                      </div>
+                      <div class="s-share-expiry">🕐 Expires 90 days · No personal info included · Can be deleted anytime</div>
+                      <div class="s-share-icons" style="margin-top:8px;">
+                        <div class="s-share-icon">📧</div>
+                        <div class="s-share-icon">💬</div>
+                        <div class="s-share-icon">📲</div>
+                      </div>
+                    </div>
+                    <div style="background:var(--surface);border:1px solid var(--border-g);border-radius:9px;padding:9px 10px;font-size:8px;color:var(--g1);line-height:1.6;">
+                      ✓ Anyone with the link can view this result<br/>✓ Only food analysis data — no personal info<br/>✓ Expires after 90 days · Delete anytime<br/><span style="color:var(--muted);font-size:7.5px;">任何人均可通过链接查看结果</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Step indicators -->
+          <div class="video-steps">
+            <div class="v-step active" onclick="goToSlide(1)"><span class="v-step-icon">🌐</span><div class="v-step-lbl">Language</div></div>
+            <div class="v-step" onclick="goToSlide(2)"><span class="v-step-icon">📷</span><div class="v-step-lbl">Scan</div></div>
+            <div class="v-step" onclick="goToSlide(3)"><span class="v-step-icon">🩺</span><div class="v-step-lbl">Conditions</div></div>
+            <div class="v-step" onclick="goToSlide(4)"><span class="v-step-icon">📊</span><div class="v-step-lbl">Result</div></div>
+            <div class="v-step" onclick="goToSlide(5)"><span class="v-step-icon">📄</span><div class="v-step-lbl">PDF</div></div>
+            <div class="v-step" onclick="goToSlide(6)"><span class="v-step-icon">🔗</span><div class="v-step-lbl">Share</div></div>
+          </div>
+
+          <!-- Controls -->
+          <div class="video-controls">
+            <div class="vc-left">
+              <button class="vc-btn" onclick="prevSlide()">&#9664;</button>
+              <button class="vc-play" id="playBtn" onclick="togglePlay()">⏸</button>
+              <button class="vc-btn" onclick="nextSlide()">&#9654;</button>
+              <span class="vc-time" id="slideTimer">Auto-advancing…</span>
+            </div>
+            <span class="vc-step-counter" id="stepCounter">1 / 5</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIVE DEMO -->
+      <div class="demo-panel" id="panel-live">
+        <div class="demo-browser reveal">
+          <div class="browser-bar">
+            <div class="b-dots"><div class="b-dot b-dot-r"></div><div class="b-dot b-dot-y"></div><div class="b-dot b-dot-g"></div></div>
+            <div class="b-url"><span class="b-lock">🔒</span> nutrividia.com</div>
+          </div>
+          <div class="demo-iframe-wrap">
+            <div class="demo-loader" id="demoLoading"><div class="demo-loader-icon">🌿</div><div class="demo-loader-txt">Loading Nutrivon…</div></div>
+            <iframe src="https://nutrividia.com" title="Nutrivon Live App" loading="lazy" onload="document.getElementById('demoLoading').classList.add('hidden')"></iframe>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="pricing-hdr reveal">
+      <div class="section-eyebrow">Pricing</div>
+      <h2 class="section-title">Start free, upgrade when ready</h2>
+      <p class="section-sub" style="margin:0 auto;">Try Nutrivon with no commitment. Upgrade to Premium for unlimited access.</p>
+    </div>
+    <div class="pricing-grid reveal">
+      <div class="pricing-card">
+        <div class="pricing-tier">Free</div>
+        <div class="pricing-price">$0<span>/mo</span></div>
+        <div class="pricing-cycle">No credit card · No sign-up required</div>
+        <div class="pricing-divider"></div>
+        <div class="pricing-features">
+          <div class="pf-item"><span class="pf-check">✓</span>3 food analyses per day</div>
+          <div class="pf-item"><span class="pf-check">✓</span>90 lifetime analyses total</div>
+          <div class="pf-item"><span class="pf-check">✓</span>Full nutrition breakdown</div>
+          <div class="pf-item"><span class="pf-check">✓</span>Health condition suitability &amp; warnings</div>
+          <div class="pf-item"><span class="pf-check">✓</span>AI summary &amp; practical tips</div>
+          <div class="pf-item"><span class="pf-check">✓</span>25 languages supported</div>
+        </div>
+        <a href="#demo" class="pricing-cta pricing-cta-free">Try Free Now</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-tag">MOST POPULAR</div>
+        <div class="pricing-tier">Premium</div>
+        <div class="pricing-price">$4.99<span>/mo</span></div>
+        <div class="pricing-cycle">or $39.99/year · Via Apple In-App Purchase</div>
+        <div class="pricing-divider"></div>
+        <div class="pricing-features">
+          <div class="pf-item"><span class="pf-check">✓</span>Unlimited food analyses</div>
+          <div class="pf-item"><span class="pf-check">✓</span>Full nutrition breakdown</div>
+          <div class="pf-item"><span class="pf-check">✓</span>Health condition suitability &amp; warnings</div>
+          <div class="pf-item"><span class="pf-check">✓</span>AI summary &amp; practical tips</div>
+          <div class="pf-item"><span class="pf-check">✓</span>25 languages supported</div>
+          <div class="pf-item"><span class="pf-check">✓</span>PDF download &amp; share results</div>
+          <div class="pf-item"><span class="pf-check">✓</span>Analysis history sync across devices</div>
+          <div class="pf-item"><span class="pf-check">✓</span>Priority access to new features</div>
+          <div class="pf-item"><span class="pf-check">✓</span>Cancel anytime</div>
+        </div>
+        <a href="#demo" class="pricing-cta pricing-cta-premium">Get Premium</a>
+      </div>
+    </div>
+    <p class="pricing-note">Premium billing via Apple In-App Purchase. Manage or cancel anytime in Settings → Apple ID → Subscriptions.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-orb"></div>
+  <div class="container">
+    <h2 class="cta-title">Your food. Your conditions.<br/><em>Your insights.</em></h2>
+    <p class="cta-sub">Start for free — no account, no credit card, no download needed.</p>
+    <div class="cta-actions">
+      <a href="#demo" class="btn-primary" style="font-size:16px;padding:16px 34px;">Try Nutrivon Free →</a>
+      <a href="#pricing" class="btn-secondary" style="font-size:16px;padding:16px 34px;">View Pricing</a>
+    </div>
+    <div style="display:flex;gap:14px;justify-content:center;margin-top:20px;flex-wrap:wrap;">
+      <a href="#" style="display:inline-flex;align-items:center;gap:10px;background:#1c1c1e;color:white;border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:10px 20px;text-decoration:none;min-width:160px;">
+        <span style="font-size:22px;line-height:1;">🍎</span>
+        <div>
+          <div style="font-size:10px;color:rgba(255,255,255,.6);font-weight:400;letter-spacing:.02em;">Download on the</div>
+          <div style="font-size:15px;font-weight:700;letter-spacing:-.01em;line-height:1.2;">App Store</div>
+        </div>
+        <span style="background:#479c25;color:white;font-size:9px;font-weight:700;padding:2px 7px;border-radius:100px;letter-spacing:.04em;margin-left:4px;">SOON</span>
+      </a>
+      <a href="#" style="display:inline-flex;align-items:center;gap:10px;background:#1c1c1e;color:white;border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:10px 20px;text-decoration:none;min-width:160px;">
+        <span style="font-size:22px;line-height:1;">▶</span>
+        <div>
+          <div style="font-size:10px;color:rgba(255,255,255,.6);font-weight:400;letter-spacing:.02em;">Get it on</div>
+          <div style="font-size:15px;font-weight:700;letter-spacing:-.01em;line-height:1.2;">Google Play</div>
+        </div>
+        <span style="background:#479c25;color:white;font-size:9px;font-weight:700;padding:2px 7px;border-radius:100px;letter-spacing:.04em;margin-left:4px;">SOON</span>
+      </a>
+    </div>
+    <p class="cta-note">Free to use · 3 analyses/day · 25 languages · Mobile app coming soon</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo">
+      <img src="nutrivon-logo.png" alt="Nutrivon"/>
+      
+    </a>
+    <ul class="footer-links">
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#conditions">Conditions</a></li>
+      <li><a href="#languages">Languages</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#demo">Demo</a></li>
+      <li><a href="privacy-policy.html">Privacy Policy</a></li>
+      <li><a href="terms-of-use.html">Terms of Use</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 Nutrivon. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+// ── SCROLL REVEAL ──
+const reveals = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+},{threshold:0.1});
+reveals.forEach(el => ro.observe(el));
+
+// ── HOW IT WORKS — sticky phone + step sync ──
+let howCurrent = 1;
+const howLabels = ['', 'Set your language', 'Scan, upload or photograph & set conditions', 'Get your result'];
+
+function howGoTo(n) {
+  howCurrent = n;
+  // Update step items
+  document.querySelectorAll('.step-item').forEach(s => {
+    s.classList.toggle('active', parseInt(s.dataset.step) === n);
+  });
+  // Update screens
+  document.querySelectorAll('.how-screen').forEach(s => {
+    s.classList.toggle('active', s.id === 'how-screen-' + n);
+  });
+  // Update dots
+  document.querySelectorAll('.how-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === n - 1);
+  });
+  // Update label
+  const lbl = document.getElementById('howScreenLabel');
+  if (lbl) lbl.textContent = howLabels[n] + ' — Step ' + n + ' of 3';
+}
+
+// Scroll-based auto-advance
+const howObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const step = parseInt(e.target.dataset.step);
+      if (step) howGoTo(step);
+    }
+  });
+}, { threshold: 0.6 });
+
+document.querySelectorAll('.step-item[data-step]').forEach(el => howObserver.observe(el));
+
+// Init
+howGoTo(1);
+
+// ── DEMO TABS ──
+function switchTab(tab) {
+  document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.demo-panel').forEach(p => p.classList.remove('active'));
+  if(tab === 'video') {
+    document.querySelectorAll('.demo-tab')[0].classList.add('active');
+    document.getElementById('panel-video').classList.add('active');
+  } else {
+    document.querySelectorAll('.demo-tab')[1].classList.add('active');
+    document.getElementById('panel-live').classList.add('active');
+  }
+}
+
+// ── VIDEO SLIDESHOW ──
+let currentSlide = 1;
+const totalSlides = 6;
+let isPlaying = true;
+let slideInterval;
+const slideDuration = 3500;
+
+function updateSlide(n) {
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.v-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('slide-' + n).classList.add('active');
+  document.querySelectorAll('.v-step')[n-1].classList.add('active');
+  document.getElementById('stepCounter').textContent = n + ' / ' + totalSlides;
+  const pct = ((n-1) / (totalSlides-1)) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function nextSlide() {
+  currentSlide = currentSlide >= totalSlides ? 1 : currentSlide + 1;
+  updateSlide(currentSlide);
+}
+
+function prevSlide() {
+  currentSlide = currentSlide <= 1 ? totalSlides : currentSlide - 1;
+  updateSlide(currentSlide);
+}
+
+function goToSlide(n) {
+  currentSlide = n;
+  updateSlide(n);
+  if(isPlaying) { clearInterval(slideInterval); startAutoplay(); }
+}
+
+function startAutoplay() {
+  slideInterval = setInterval(() => { nextSlide(); }, slideDuration);
+}
+
+function togglePlay() {
+  isPlaying = !isPlaying;
+  document.getElementById('playBtn').textContent = isPlaying ? '⏸' : '▶';
+  document.getElementById('slideTimer').textContent = isPlaying ? 'Auto-advancing…' : 'Paused';
+  if(isPlaying) { startAutoplay(); } else { clearInterval(slideInterval); }
+}
+
+startAutoplay();
+updateSlide(1);
+</script>
+</body>
+</html>
